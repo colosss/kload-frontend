@@ -1,0 +1,140 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+
+
+.form_box{
+  display: flex;
+  flex-direction:column;
+  box-sizing: border-box;
+
+  width: 95vw;
+  min-height: 82.5vh;
+  margin: 15vh auto 5vh auto; /* ← центр по горизонали (auto) */
+  padding: 2.5vh 3vw 3vh 3vw; /* внутренние отступы, снизу место для “пустоты” */
+  gap:2.5vh;
+  background:rgba(255, 255, 255, 0.9);
+  border-radius: 2.5vw;
+  box-shadow:
+      0 0 1vw 1vh #ffffff;
+  ;
+  backdrop-filter: blur(0.5vh);
+  align-items: center;
+  z-index: auto;
+
+}
+
+/* .content_text{
+  width: 85%;
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-size: 24px;
+  text-align: left;
+
+  color: #ffffff;
+} */
+
+.form_button_box{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:1.5vh;
+
+}
+.form_area{
+    display: flex;
+    flex-direction: column;
+    width: var(--form-width);
+    max-width: var(--form-max-width);
+    gap: var(--row-gap);
+    box-sizing: border-box;
+    align-items: stretch;
+    margin-top: 1vh;
+    /* position: static; */
+    /* margin-right: 10vw; */
+}
+/* Общая правка для корректного центрирования текста */
+.form_text{
+  /* убираем фиксированную ширину и top */
+  width: 100%;
+  max-width: 60ch; /* ограничение на ширину строки для удобочитаемости */
+  margin: 2.5vh auto 0; /* центрируем блок внутри родителя */
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  /* font-size: calc((2.5vh + 2.5vw) / 2); */
+  font-size: 38px;
+
+  text-align: center;
+  color: #000000;
+  box-sizing: border-box;
+}
+
+/* Подправим контейнер сообщения */
+.info_box {
+  position: fixed;
+  min-width: 200px;
+  top: 5vh;
+  width: 70vw;
+  height: 70vh;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* текст сверху, но по центру по горизонтали */
+  align-items: center;          /* центрируем по горизонтали */
+  box-sizing: border-box;
+  padding: 15px 20px;
+  gap: 8px;
+
+  background: rgba(240, 248, 255, 0.95);
+  border-radius: 1.5vw;
+  backdrop-filter: blur(0.5vh);
+  z-index: 1001;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  text-align: center; /* на всякий случай для inline-элементов */
+}
+
