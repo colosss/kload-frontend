@@ -4,8 +4,12 @@ import cancel from "../assets/post_button_cancel.svg"
 import "./post_button.css"
 import Post_form from './post_form'
 
+type Post_button_props = {
+    tema?:string,
+    telo?:string
+}
 
-export default function Post_button (){
+export default function Post_button ({tema, telo}:Post_button_props){
     const [button_flag, setButton_flag] = useState <boolean>(false);
 
     function Button_click(){
@@ -20,7 +24,7 @@ export default function Post_button (){
                 <img className='post_image_button' src={!button_flag ? defualte : cancel} alt={!button_flag ? 'post_button' : 'post_button_cancel'}/>
             </button>
             {button_flag &&
-            <Post_form/>}
+            <Post_form tema={tema} telo={telo}/>}
         </div>
     );
 };

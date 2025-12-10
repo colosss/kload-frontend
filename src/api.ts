@@ -42,10 +42,10 @@ export async function refreshOnce(){
     return refreshPromise;
 }
 
-export async function getPosts(){
+export async function getPosts(limit:number, last_id:number){
     let response: Promise<any> | null = null;
     console.log("Getting posts...");
-    response = await api.get("/post/",{ headers: { "Content-Type": "application/json"}, withCredentials: true })
+    response = await api.get("/post/group/",{ params:{limit, last_id}, headers: { "Content-Type": "application/json"}, withCredentials: true })
         .then(res => {
             console.log("Get posts response:", res.data);
             return res.data;
@@ -58,21 +58,43 @@ export async function getPosts(){
     
 }
 
-export async function getUserPosts(){
-    let response_mes: Promise<any> | null = null;
-    console.log("Getting user posts...");
-    //переделать путь на нуджный
-    response_mes = await api.get("/post/uer/ ",{ headers: { "Content-Type": "application/json"}, withCredentials: true })
-        .then(res => {
-            console.log("Get posts response_mes:", res.data);
-            return res.data;
-        })
-        .catch(err => {
-            console.error("Get posts error:", err.response?.status, err.response?.data);
-            throw err;
+export async function getUserName(): Promise<string> {
+    try {
+    console.log("Getting user name...");
+    const res = await api.get("/user/", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+    });
+    console.log("Get user response:", res.data);
+
+    const userData = res.data;
+    const username = typeof userData === "string" ? userData : userData.username;
+    if (!username) throw new Error("Username not found in /user response");
+    return username;
+    } catch (err: any) {
+    console.error("Get userName error:", err?.response?.status, err?.response?.data || err?.message);
+    throw err;
+    }
+}
+
+export async function getUserPosts(username: string) {
+    if (!username) {
+        throw new Error("username is required to fetch posts");
+    }
+
+    try {
+        console.log("Getting user posts for", username);
+        const res = await api.get("/post/user/", {
+        params: { username }, // -> ?username=Fugi
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
         });
-        return response_mes;
-    
+        console.log("Get posts response_mes:", res.data);
+        return res.data;
+    } catch (err: any) {
+        console.error("Get posts error:", err?.response?.status, err?.response?.data || err?.message);
+        throw err;
+    }
 }
 
 
