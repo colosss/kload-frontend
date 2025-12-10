@@ -25,7 +25,7 @@ export default function Confirm() {
         setError(null);
         try {
           const response = await api.get(
-            "/user/registration/confirm/",{
+            "/auth/registration/confirm/",{
           params: { token_pod: token },
           // headers: { Authorization: undefined } // на всякий случай
         });

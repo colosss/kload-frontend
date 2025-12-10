@@ -54,6 +54,7 @@
 }
 
 .title_area{
+    resize: none;
     
     width: 90%;
     height: auto;
@@ -62,7 +63,7 @@
     font-style: normal;
     font-size: 18px;
     text-align: left;
-    padding: 2.5vh 2.5vw 0 2.5vw;
+    padding: 2.5vh 2.5vw 2.5vh 2.5vw;
     color: #ffffff;
     box-sizing: border-box;
     background: #00000085;
@@ -72,7 +73,7 @@
 
 }
 .post_area{
-    
+    resize: none;
     width: 90%;
     height: auto;
     height: 45vh;
@@ -86,6 +87,7 @@
     box-sizing: border-box;
     background: #00000085;
     border-radius: 1.5vw;
+
     /* overflow-wrap: anywhere; */
 
 }

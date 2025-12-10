@@ -26,14 +26,12 @@ export default function App() {
     return () => { mounted = false; };
   }, []);
 
-  const [content, setContent] = useState<Array<{title:string, body:string, name_img:string, user_name:string, id:number}>>([]);
+  const [content, setContent] = useState<Array<{title:string, body:string, username:string, id:number}>>([]);
 
   useEffect(() => {
-    let mounted = true;
-
       getPosts()
       .then((data) => {
-        if (mounted && Array.isArray(data)) {
+        if (Array.isArray(data)) {
           setContent(data);
         }
       })
@@ -52,8 +50,8 @@ export default function App() {
           {content.map((option, index) => (
             <div className="content_text" key={index}>
               <div className="lable_text" >{option.title}</div>
-              <span><img className="image" src="../public/default.png" alt={"Profile image " + option.name_img}/></span>
-              <span style={{color:"red"}}>  {option.user_name + "@kload: " }</span>
+              <span><img className="image" src="../public/default.png" alt={"Profile image default.png"}/></span>
+              <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
               {option.body}
             </div>
           ))}

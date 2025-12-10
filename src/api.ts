@@ -24,7 +24,7 @@ export async function refreshOnce(){
     console.log("Refreshing token...");
     if(isRefreshing) return refreshPromise;
     isRefreshing = true;
-    refreshPromise = api.get("/user/auth/refresh/" , { withCredentials: true })
+    refreshPromise = api.get("/auth/refresh/" , { withCredentials: true })
     .then(res => {
         console.log("Refresh response:", res.data);
         const newAccess = res.data?.access_token;
@@ -62,7 +62,7 @@ export async function getUserPosts(){
     let response_mes: Promise<any> | null = null;
     console.log("Getting user posts...");
     //переделать путь на нуджный
-    response_mes = await api.get("/post/",{ headers: { "Content-Type": "application/json"}, withCredentials: true })
+    response_mes = await api.get("/post/uer/ ",{ headers: { "Content-Type": "application/json"}, withCredentials: true })
         .then(res => {
             console.log("Get posts response_mes:", res.data);
             return res.data;

@@ -84,7 +84,7 @@ function handleNameChange(v: string) {
     params.append("grant_type", "password");
     try {
       const response = await api.post(
-        "/user/auth/token/",
+        "/auth/token/",
         params.toString(),
         {
           headers: {

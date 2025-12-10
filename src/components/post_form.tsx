@@ -2,7 +2,7 @@ import api from "../api"
 import "./post_form.css"
 import Button from "./button_handler"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Post_button from "./Post_button"
 
 
@@ -27,7 +27,7 @@ export default function Post_form(){
         window.location.reload();
     }
 
-    function handleTitleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    function handleTitleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setTitle(event.target.value);
     }
     function handlePostChange(event:React.ChangeEvent<HTMLTextAreaElement>) {
@@ -61,6 +61,11 @@ export default function Post_form(){
         console.error("Ошибка при отправке данных:", error.response?.data || error.message);
     }
   }
+
+   useEffect(() => {
+      setTitle("asdasd")
+    }, []);
+  
 // onSubmit={handleSubmit}
     return(
 
@@ -69,16 +74,20 @@ export default function Post_form(){
                 <form  onSubmit={handleSubmit} noValidate>
                     <div className="post_lable_text">Форма создания постов</div>
                     <div className="post_text">Тема: </div>
-                    <textarea
-                        value={title}
-                        onChange={handleTitleChange}
-                        maxLength={75}
-                        className="title_area"/>
+                    <input
+                    value={title}
+                    onChange={handleTitleChange}
+                    maxLength={75}
+                    placeholder="Тема поста..."
+                    className="title_area"/>
                     <div className="post_text"> Пост: </div>
                     <textarea
                         value={post}
                         onChange={handlePostChange}
                         maxLength={10000}
+                        autoCorrect="on"
+                        placeholder="Тело поста..."
+                        spellCheck="true"
                         className="post_area"/>
                     <Button onClick={() => Button_click("b")} type={"submit"} flag_disabled={(title.length==0) || (post.length==0)}>
                         Подтвердить

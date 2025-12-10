@@ -15,21 +15,29 @@ export default function Register() {
 
 
   const [name, setName] = useState<string>("");
+  const [login, setLogin] = useState<string>("");
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [password_confirm, setPassword_confirm] = useState<string>("");
 
   const [flag_name_error, setFlag_name_error] = useState<boolean>(false);
+  const [flag_login_error, setFlag_login_error] = useState<boolean>(false);
+
   const [flag_email_error, setFlag_email_error] = useState<boolean>(false);
   const [flag_password_error, setFlag_password_error] = useState<boolean>(false);
   const [flag_password_confirm_error, setFlag_password_confirm_error] = useState<boolean>(false);
 
   const [touchedName, setTouchedName] = useState<boolean>(false);
+  const [touchedLogin, setTouchedLogin] = useState<boolean>(false);
+
   const [touchedEmail, setTouchedEmail] = useState<boolean>(false);
   const [touchedPassword, setTouchedPassword] = useState<boolean>(false);
   const [touchedPasswordConfirm, setTouchedPasswordConfirm] = useState<boolean>(false);
 
   const validateName = (v: string) => v.trim().length >= 4; // минимум 4 символов
+  const validateLogin = (v: string) => v.trim().length >= 4; // минимум 4 символов
+
   const validateEmail = (v: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(v);
@@ -40,6 +48,10 @@ export default function Register() {
   function handleNameChange(v: string) {
     setName(v);
     if (touchedName) setFlag_name_error(!validateName(v));
+  }
+  function handleLoginChange(v: string) {
+    setLogin(v);
+    if (touchedLogin) setFlag_login_error(!validateLogin(v));
   }
   function handleEmailChange(v: string) {
     setEmail(v);
@@ -62,6 +74,10 @@ export default function Register() {
   function handleNameBlur() {
     setTouchedName(true);
     setFlag_name_error(!validateName(name));
+  }
+  function handleLoginBlur() {
+    setTouchedLogin(true);
+    setFlag_login_error(!validateLogin(login));
   }
   function handleEmailBlur() {
     setTouchedEmail(true);
@@ -90,26 +106,33 @@ export default function Register() {
     e.preventDefault();
 
     setTouchedName(true);
+    setTouchedLogin(true);
+
     setTouchedEmail(true);
     setTouchedPassword(true);
     setTouchedPasswordConfirm(true);
 
     const nameInvalid = !validateName(name);
+    const loginInvalid = !validateLogin(login);
+
     const emailInvalid = !validateEmail(email);
     const passwordInvalid = !validatePassword(password);
     const passwordConfirmInvalid = !validatePasswordConfirm(password_confirm, password);
 
     setFlag_name_error(nameInvalid);
+    setFlag_login_error(loginInvalid);
+
     setFlag_email_error(emailInvalid);
     setFlag_password_error(passwordInvalid);
     setFlag_password_confirm_error(passwordConfirmInvalid);
 
-    if (nameInvalid || emailInvalid || passwordInvalid || passwordConfirmInvalid) {
+    if (nameInvalid || emailInvalid || passwordInvalid || passwordConfirmInvalid || loginInvalid) {
       // не отправляем форму — ошибки показаны пользователю
       setSendStatus('error');
       setServerMessage('Проверьте поля формы — есть ошибки.');
       console.log("Validation failed, not sending. Flags:", {
         nameInvalid,
+        loginInvalid,
         emailInvalid,
         passwordInvalid,
         passwordConfirmInvalid,
@@ -119,14 +142,15 @@ export default function Register() {
 
     //Используется на случай если бек принимает данные в формате application/x-www-form-urlencoded
     const params = new URLSearchParams({
+      login: login,
       username : name,
       password : password,
       email:email,
     })
     try {
     const response = await api.post(
-      "/user/registration/",
-      { username: name, password, email },
+      "/auth/registration/",
+      { login:login, username: name, password, email },
       { headers: { "Content-Type": "application/json" } }
     );
     setSendStatus('success');
@@ -172,16 +196,25 @@ export default function Register() {
           </div>}
 
           <form onSubmit={handleSubmit} noValidate className="form_button_box">
+            <Input
+              type="text"
+              value={login}
+              setValue={handleLoginChange}
+              flag_error={flag_login_error}
+              onBlur={handleLoginBlur}
+              touched={touchedLogin}
+              errorMessage="Логин должен содержать не менее 4 символов"
+            >Логин</Input>
 
             <Input
-              type="username"
+              type="text"
               value={name}
               setValue={handleNameChange}
               flag_error={flag_name_error}
               onBlur={handleNameBlur}
               touched={touchedName}
               errorMessage="Имя должно содержать не менее 4 символов"
-            >Логин</Input>
+            >Никнейм</Input>
 
             <Input
               type="email"
