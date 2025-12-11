@@ -59,6 +59,7 @@ export default function App() {
               <span><img className="image" src="../public/default.png" alt={"Profile image default.png"}/></span>
               <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
               {option.body}
+              
             </div>
           ))}
 

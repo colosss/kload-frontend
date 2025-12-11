@@ -12,6 +12,11 @@ import "../App.css"
 import type { AxiosError } from 'axios';
 
 export default function Profile (){
+
+    const count_of_simvols=30;
+    const count_more_simvols=120;
+
+
     const [formFlag, setFormFlag] = useState<boolean>(false)
     
     
@@ -22,7 +27,6 @@ export default function Profile (){
 
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
     const [serverMessage, setServerMessage] = useState<string>('');
-    const count_of_simvols=30
     const [messages, setMessages] = useState<Array<{title:string, body:string, name_img:string, user_name:string, id:number}>>([]);
     const [expandedPosts, setExpandedPosts] = useState<Set<number>>(new Set());
     function ButtonProfile(){
@@ -136,7 +140,7 @@ export default function Profile (){
                         </div>
                         )}
                         {sendStatus === 'error' && (<div>
-                        <h5 className="form_text" style={{color:"red"}}>{serverMessage}</h5>
+                        <h5 className="f orm_text" style={{color:"red"}}>{serverMessage}</h5>
                             <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
                             Заново
                             </Button>
@@ -177,19 +181,19 @@ export default function Profile (){
                                 const truncated = post.body.length > count_of_simvols;
                                 const shouldShowFull = isExpanded(post.id);
                                 const displayText = shouldShowFull || !truncated
-                                    ? post.body
-                                    : post.body.slice(0, count_of_simvols - 3) + "...";
+                                    ? post.body.slice(0, count_more_simvols-3)
+                                    : post.body.slice(0, count_of_simvols - 3) + "..."
                                 return(
                                 <button key={post.id}
                                         onClick={() => togglePost(post.id)}
                                         style={{ border: 'none', background: 'none', cursor: 'pointer'}}>
                                     <div className="content_text" key={index} >
                                         <div className="lable_text">{post.title}</div>
-                                        <span style={{color:"red"}}>  {post.username + "@kload" }</span>
+                                        <span style={{color:"red"}}>  {post.user_name + "@kload" }</span>
                                         <span>:</span>
                                         <span style={{color: "green"}}>~</span>
                                         <span>$ </span>
-                                        {displayText}
+                                        {displayText}<Link to="/">  {"=>"}перейти к посту</Link>
                                     </div>
                                 </button>
                                 )
