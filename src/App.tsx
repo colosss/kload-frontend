@@ -9,6 +9,10 @@ import Post_button from "./components/Post_button";
 
 
 export default function App() {
+  ////asdasdasdasdasdasd
+  const limit=5;
+  const [lastid, setLastid] = useState<number>(0);
+
   const [access, setAccess] = useState<string | null>(() => getAccessToken());
 
   useEffect(() => {
@@ -29,15 +33,17 @@ export default function App() {
   const [content, setContent] = useState<Array<{title:string, body:string, username:string, id:number}>>([]);
 
   useEffect(() => {
-      getPosts()
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setContent(data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-      });
+        getPosts(limit, lastid)
+              .then((data) => {
+                if (Array.isArray(data)) {
+                  setContent(data);
+                }
+              })
+              .catch((error) => {
+                console.error("Error fetching posts:", error);
+              });
+      
+      
   }, []); {
             console.error("Refresh failed during response handling:");
         }
@@ -53,6 +59,7 @@ export default function App() {
               <span><img className="image" src="../public/default.png" alt={"Profile image default.png"}/></span>
               <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
               {option.body}
+              
             </div>
           ))}
 

@@ -1,8 +1,8 @@
-import api from '../api';
+import api, { getUserPosts, getUserName} from '../api';
 import './Profile.css'
 import Header from "../components/Header";
 import Button from "../components/button_handler";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import type React from "react";
 
 import { getPosts } from "../api";
@@ -12,15 +12,21 @@ import "../App.css"
 import type { AxiosError } from 'axios';
 
 export default function Profile (){
+
+    const count_of_simvols=30;
+    const count_more_simvols=120;
+
+
     const [formFlag, setFormFlag] = useState<boolean>(false)
     
-    const [username, setUsername] = useState<string>("")
+    
+    const [username, setUsername] = useState <string>("")
+    const [getingname, setGetingname] = useState <string>("")
     const [flag_username_error, setFlag_username_error] = useState<boolean>(false);
     const [touchedUserName, setTouchedUserName] = useState<boolean>(false);
 
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
     const [serverMessage, setServerMessage] = useState<string>('');
-    const count_of_simvols=30
     const [messages, setMessages] = useState<Array<{title:string, body:string, name_img:string, user_name:string, id:number}>>([]);
     const [expandedPosts, setExpandedPosts] = useState<Set<number>>(new Set());
     function ButtonProfile(){
@@ -55,24 +61,41 @@ export default function Profile (){
             return newSet;
         });
     };
+    function Reload_Page(){
+        window.location.reload();
+    }
 
     const isExpanded = (id: number) => expandedPosts.has(id);
-
-      useEffect(() => {
+    useEffect(() => {
+        let mounted=true;
+        (async()=>{
+            try{
+                const name= await getUserName();
+                if(mounted){
+                    setGetingname(name);
+                    setUsername(name);
+                }
+            } catch(err){
+                console.error("Failed to get username: ", err);
+            }
+        })();
+        return()=>{mounted=false;};
+    }, []);
+    useEffect(() => {
+        if(!getingname)return;
         let mounted = true;
-    
-          getPosts()
-          .then((data) => {
+        getUserPosts(getingname)
+        
+        .then((data) => {
             if (mounted && Array.isArray(data)) {
-              setMessages(data);onBlur
+            setMessages(data);
             }
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             console.error("Error fetching posts:", error);
-          });
-      }, []); {
-                console.error("Refresh failed during response handling:");
-            }
+        });
+        return () => { mounted = false; };
+    }, [getingname]);
 
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -82,9 +105,9 @@ export default function Profile (){
             username : username,
             })
             try {
-            const response = await api.post(
+            const response = await api.put(
             //Изменить путь
-            "/post/",
+            "/user/",
             { username: username},
             { headers: { "Content-Type": "application/json" } }
             );
@@ -105,18 +128,38 @@ export default function Profile (){
             <Header />
             <main>
                 <div className = "content_box">
+                    {sendStatus!='none' && <div className="info_box">
+                        {sendStatus === 'success' && (
+                        <div>
+                        <h5 className="form_text" >Вы успешно изменили свое имя пользователя на <span style={{color:"green"}}>{username}</span></h5>
+                            {/* <Link to ="/"> */}
+                            <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
+                            Обновить страницу
+                            </Button>
+                            {/* </Link> */}
+                        </div>
+                        )}
+                        {sendStatus === 'error' && (<div>
+                        <h5 className="f orm_text" style={{color:"red"}}>{serverMessage}</h5>
+                            <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
+                            Заново
+                            </Button>
+                            </div>
+                        )}
+                    </div>}
                     <div className="profile_lable_text">Профиль</div>
                     <div className='test_row'>
                         <div className='column_profile_info'>
                             <span className="profile_text"><img src="../../public/default.png" alt="Default_photo" className="image_profile"/></span>
-                            <span className="profile_text">Ник: <span style={{color:"red"}}>@{"fugi"}</span></span>
+                            <span className="profile_text">Ник: <span style={{color:"red"}}>@{getingname}</span></span>
                             <span className="profile_text">Имя пользователя: {!formFlag && "Mifugi1212"}</span>
                             {formFlag &&
-                                <form>
+                                <form onSubmit={handleSubmit} noValidate>
                                     <input type="text"
                                             style={{maxWidth:"100%"}}
                                             onChange={handleChange}
                                             onBlur={handleBlur} 
+                                            value={username}
                                             className={flag_username_error==true ? "input_area_incorrect" : "input_area" }/>
                                     <Button 
                                     type="submit"
@@ -138,8 +181,8 @@ export default function Profile (){
                                 const truncated = post.body.length > count_of_simvols;
                                 const shouldShowFull = isExpanded(post.id);
                                 const displayText = shouldShowFull || !truncated
-                                    ? post.body
-                                    : post.body.slice(0, count_of_simvols - 3) + "...";
+                                    ? post.body.slice(0, count_more_simvols-3)
+                                    : post.body.slice(0, count_of_simvols - 3) + "..."
                                 return(
                                 <button key={post.id}
                                         onClick={() => togglePost(post.id)}
@@ -150,7 +193,7 @@ export default function Profile (){
                                         <span>:</span>
                                         <span style={{color: "green"}}>~</span>
                                         <span>$ </span>
-                                        {displayText}
+                                        {displayText}<Link to="/">  {"=>"}перейти к посту</Link>
                                     </div>
                                 </button>
                                 )

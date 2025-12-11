@@ -5,9 +5,12 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Post_button from "./Post_button"
 
+type Post_form_props={
+    tema?:string,
+    telo?:string
+}
 
-
-export default function Post_form(){
+export default function Post_form({tema, telo}:Post_form_props){
     const [title, setTitle]= useState<string>('');
     const [post, setPost]= useState<string>('');
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
@@ -63,7 +66,9 @@ export default function Post_form(){
   }
 
    useEffect(() => {
-      setTitle("asdasd")
+    //   setTitle("asdasd")
+    if(tema)setTitle(tema)
+    if(telo)setPost(telo)
     }, []);
   
 // onSubmit={handleSubmit}
