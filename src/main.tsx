@@ -8,7 +8,7 @@ import Confirm from './pages/Confirm.tsx'
 import Profile from './pages/Profile.tsx'
 import Post from './pages/Post.tsx'
 
-import {BrowserRouter, Route, Routes} from "react-router"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
 
 
 // createRoot(document.getElementById('root')!).render(
@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/register' element={<Register/>}/>
           <Route path='/confirm' element={<Confirm/>}/>
           <Route path='/profile' element={<Profile/>}/>
-          <Route path='/post' element={<Post/>}/>
+          <Route path='/post/:id' element={<Post/>}/>
       </Routes>
     
     </BrowserRouter>

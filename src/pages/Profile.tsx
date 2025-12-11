@@ -132,11 +132,11 @@ export default function Profile (){
                         {sendStatus === 'success' && (
                         <div>
                         <h5 className="form_text" >Вы успешно изменили свое имя пользователя на <span style={{color:"green"}}>{username}</span></h5>
-                            {/* <Link to ="/"> */}
+                            <Link to ="/">
                             <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
                             Обновить страницу
                             </Button>
-                            {/* </Link> */}
+                            </Link>
                         </div>
                         )}
                         {sendStatus === 'error' && (<div>

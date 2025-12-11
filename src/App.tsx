@@ -4,11 +4,13 @@ import "./components/button_handler.css";
 import Header from "./components/Header";
 import { getAccessToken, getPosts, refreshOnce } from "./api";
 import Post_button from "./components/Post_button";
+import { Link } from "react-router-dom";
 // import api from "./api";
 
 
 
 export default function App() {
+  const count_of_simvols=120;
   ////asdasdasdasdasdasd
   const limit=5;
   const [lastid, setLastid] = useState<number>(0);
@@ -44,7 +46,7 @@ export default function App() {
               });
       
       
-  }, []); {
+  }, [limit, lastid]); {
             console.error("Refresh failed during response handling:");
         }
   return (
@@ -58,7 +60,7 @@ export default function App() {
               <div className="lable_text" >{option.title}</div>
               <span><img className="image" src="../public/default.png" alt={"Profile image default.png"}/></span>
               <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
-              {option.body}
+              {option.body.slice(0, count_of_simvols - 3)+"...  "}{<Link to={`/post/${option.id}`}>  {"=>"}перейти к посту</Link>}
               
             </div>
           ))}

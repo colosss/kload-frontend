@@ -5,11 +5,13 @@ import "./post_button.css"
 import Post_form from './post_form'
 
 type Post_button_props = {
-    tema?:string,
-    telo?:string
+    tema?:string | string[],
+    telo?:string | string[],
+    put?:boolean, 
+    id?:number
 }
 
-export default function Post_button ({tema, telo}:Post_button_props){
+export default function Post_button ({tema, telo, put, id}:Post_button_props){
     const [button_flag, setButton_flag] = useState <boolean>(false);
 
     function Button_click(){
@@ -24,7 +26,7 @@ export default function Post_button ({tema, telo}:Post_button_props){
                 <img className='post_image_button' src={!button_flag ? defualte : cancel} alt={!button_flag ? 'post_button' : 'post_button_cancel'}/>
             </button>
             {button_flag &&
-            <Post_form tema={tema} telo={telo}/>}
+            <Post_form tema={tema} telo={telo} put={put} id={id}/>}
         </div>
     );
 };

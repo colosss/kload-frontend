@@ -6,13 +6,15 @@ import { useState, useEffect } from "react"
 import Post_button from "./Post_button"
 
 type Post_form_props={
-    tema?:string,
-    telo?:string
+    tema?:string | string[],
+    telo?:string | string[],
+    put?:boolean, 
+    id?:number
 }
 
-export default function Post_form({tema, telo}:Post_form_props){
-    const [title, setTitle]= useState<string>('');
-    const [post, setPost]= useState<string>('');
+export default function Post_form({tema, telo, put, id}:Post_form_props){
+    const [title, setTitle]= useState<string| string[]>('');
+    const [post, setPost]= useState<string | string[]>('');
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
     const [serverMessage, setServerMessage] = useState<string>('');
 
@@ -36,16 +38,33 @@ export default function Post_form({tema, telo}:Post_form_props){
     function handlePostChange(event:React.ChangeEvent<HTMLTextAreaElement>) {
     setPost(event.target.value);
     }
+    async function handleSubmit_put(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+        const titleStr = Array.isArray(title) ? title.join("\n") : title;
+        const bodyStr  = Array.isArray(post)  ? post.join("\n")  : post;
+
+        try {
+        const response = await api.put(
+        "/post/"+id,
+        { title: titleStr, body:bodyStr},
+        { headers: { "Content-Type": "application/json" } }
+        );
+        setSendStatus('success');
+    } catch (error: any) {
+        setSendStatus('error');
+        const serverMessage = error.response?.data?.details
+        ? Array.isArray(error.response.data.details)
+            ? error.response.data.details.join('\n')
+            : String(error.response.data.details)
+        : error.response?.data?.message || error.message || 'Ошибка при отправке';
+        setServerMessage(serverMessage);
+        console.error("Ошибка при отправке данных:", error.response?.data || error.message);
+    }
+  }
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-
-        //Используется на случай если бек принимает данные в формате application/x-www-form-urlencoded
-        const params = new URLSearchParams({
-        title : title,
-        body : post,
-        })
         try {
         const response = await api.post(
         "/post/",
@@ -76,7 +95,7 @@ export default function Post_form({tema, telo}:Post_form_props){
 
             <div className="post_form_box">
                 {sendStatus=='none'&&
-                <form  onSubmit={handleSubmit} noValidate>
+                <form  onSubmit={!put?handleSubmit:handleSubmit_put} noValidate>
                     <div className="post_lable_text">Форма создания постов</div>
                     <div className="post_text">Тема: </div>
                     <input
