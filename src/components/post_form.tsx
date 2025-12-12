@@ -96,7 +96,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
             <div className="post_form_box">
                 {sendStatus=='none'&&
                 <form  onSubmit={!put?handleSubmit:handleSubmit_put} noValidate>
-                    <div className="post_lable_text">Форма создания постов</div>
+                    <div className="post_lable_text">{!put?"Форма создания постов":"Форма редактирования постов"}</div>
                     <div className="post_text">Тема: </div>
                     <input
                     value={title}
@@ -122,7 +122,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
 
                 {sendStatus == 'success' && 
                 <div>
-                     <div className="post_lable_text">Пост успешо создан</div>
+                     <div className="post_lable_text">{put?"Пост успешно отредактирован":"Пост успешо создан"}</div>
                      {/* <div className="post_text">Server message: {serverMessage}</div> */}
                     <Button onClick={() => ReloadPage()} type={"submit"} flag_disabled={(title.length==0) || (post.length==0)}>
                         Ок

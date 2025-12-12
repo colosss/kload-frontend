@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import  { useState, useEffect } from "react";
 import { getPostByID } from "../api"
 import Post_button from "../components/Post_button";
+import Delete_post_button from "../components/Delete_post_button";
 
 
 export default function Post(){
@@ -43,15 +44,15 @@ export default function Post(){
         { title: title, body:post },
         { headers: { "Content-Type": "application/json" } }
         );
-        setSendStatus('success');
+        // setSendStatus('success');
     } catch (error: any) {
-        setSendStatus('error');
+        // setSendStatus('error');
         const serverMessage = error.response?.data?.details
         ? Array.isArray(error.response.data.details)
             ? error.response.data.details.join('\n')
             : String(error.response.data.details)
         : error.response?.data?.message || error.message || 'Ошибка при отправке';
-        setServerMessage(serverMessage);
+        // setServerMessage(serverMessage);
         console.error("Ошибка при отправке данных:", error.response?.data || error.message);
     }
   }
@@ -68,8 +69,7 @@ export default function Post(){
                             <div className="lable_text" >{option.title}</div>
                             <span><img className="image" src="../../public/default.png" alt={"Profile image default.png"}/></span>
                             <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
-                            {option.body}
-                        </div>
+                            {option.body}</div>
                     ))}
                     
                     <div className="post_buttons_row">
@@ -77,7 +77,6 @@ export default function Post(){
                 </div>
             </main>
             <Post_button telo={post.map((option)=>option.body)} tema={post.map((option)=>option.title)} put={true} id={id}/>
-
         </div>
     );
 }

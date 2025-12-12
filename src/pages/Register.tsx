@@ -178,7 +178,7 @@ export default function Register() {
           {sendStatus!='none' && <div className="info_box">
             {sendStatus === 'success' && (
             <div>
-              <h5 className="form_text" >На вашу почту <span style={{color:"green"}}>{email}</span> было отправлено письмо для поддтверждения</h5>
+              <h5 className="form_text" >На вашу почту <span style={{color:"green"}}>{email}</span> было отправлено письмо для подтверждения</h5>
                 <Link to ="/">
                 <Button onClick={() => Button_click("b")} type={"button"} flag_disabled={false}>
                 На главную
