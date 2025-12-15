@@ -1,18 +1,19 @@
 import api from "../api"
 import "./post_form.css"
 import Button from "./button_handler"
-import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 
 type Post_form_props={
-    id?:number
+    id:number
 }
 
-export default function Delete_post_form({id}:Post_form_props){
+
+export default function Delete_post_form(props:Post_form_props){
+    const {id}=props
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
     const [serverMessage, setServerMessage] = useState<string>('');
-
+    console.log(id)
     function Button_click(type: string) {
     console.log("Button clicked", type);
     }

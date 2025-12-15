@@ -88,7 +88,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
     //   setTitle("asdasd")
     if(tema)setTitle(tema)
     if(telo)setPost(telo)
-    }, []);
+    }, [tema, telo]);
   
 // onSubmit={handleSubmit}
     return(

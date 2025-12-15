@@ -152,7 +152,7 @@ export default function Profile (){
                         <div className='column_profile_info'>
                             <span className="profile_text"><img src="../../public/default.png" alt="Default_photo" className="image_profile"/></span>
                             <span className="profile_text">Ник: <span style={{color:"red"}}>@{getingname}</span></span>
-                            <span className="profile_text">Имя пользователя: {!formFlag && "Mifugi1212"}</span>
+                            {/* <span className="profile_text">Логин: {!formFlag && "Mifugi1212"}</span> */}
                             {formFlag &&
                                 <form onSubmit={handleSubmit} noValidate>
                                     <input type="text"
@@ -193,7 +193,7 @@ export default function Profile (){
                                         <span>:</span>
                                         <span style={{color: "green"}}>~</span>
                                         <span>$ </span>
-                                        {displayText}<Link to="/">  {"=>"}перейти к посту</Link>
+                                        {displayText}<Link to={`/post/${post.id}`}>  {"=>"}перейти к посту</Link>
                                     </div>
                                 </button>
                                 )

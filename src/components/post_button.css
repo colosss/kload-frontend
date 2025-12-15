@@ -3,16 +3,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc((10vh + 10vw) / 2);
-    height: calc((10vh + 10vw) / 2);
-    right: 2.5vw;
+    width: calc((7.5vh + 7.5vw) / 2);
+    height: calc((7.5vh + 7.5vw) / 2);
+    right: calc((5vh + 5vw) / 2);
     bottom: 2.5vh;
     border-radius: calc((5vh + 5vw) / 2);
     z-index: 1002;
 }
 .post_image_button{
-    width: calc((10vh + 10vw) / 2);
-    height: calc((10vh + 10vw) / 2);
+    width: calc((7.5vh + 7.5vw) / 2);
+    height: calc((7.5vh + 7.5vw) / 2);
     border-radius: calc((5vh + 5vw) / 2);
     z-index: 1003;
     cursor: pointer;
@@ -27,17 +27,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc((10vh + 10vw) / 2);
-    height: calc((10vh + 10vw) / 2);
-    right: 15vw;
+    width: calc((7.5vh + 7.5vw) / 2);
+    height: calc((7.5vh + 7.5vw) / 2);
+    right: calc((15vh + 15vw) / 2);
     bottom: 2.5vh;
     border-radius: calc((5vh + 5vw) / 2);
     border-color: rgba(0, 0, 0, 0);
     z-index: 1002;
 }
 .delete_post_image_button{
-    width: calc((10vh + 10vw) / 2);
-    height: calc((10vh + 10vw) / 2);
+    width: calc((7.5vh + 7.5vw) / 2);
+    height: calc((7.5vh + 7.5vw) / 2);
     border-radius: calc((5vh + 5vw) / 2);
     border-color: rgba(0, 0, 0, 0);
     z-index: 1003;

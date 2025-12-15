@@ -31,6 +31,40 @@
   box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
 }
 
+
+.menu_login {
+  position: absolute;
+  border-color: rgba(0, 0, 0, 0);
+  
+  width: calc((5vh + 5vw) / 2);
+  height: calc((2.5vh + 2.5vw) / 2);
+  right: 2.5vw;
+  top: calc((4vh + 4vw) / 4);
+  cursor: pointer;
+  z-index: 1002;
+  background-color: rgba(0, 0, 0, 0);
+  
+}
+.menu_login_image {
+  position: absolute;
+  width: calc((5vh + 5vw) / 2);
+  height: calc((2.5vh + 2.5vw) / 2);
+  left: 0vw;
+  top: 0vh;
+  cursor: pointer;
+  z-index: 1002;
+  
+}
+.menu_login:hover .menu_login_image {
+  filter: brightness(1.15) saturate(1.2);
+  transform: translateY(-1px);
+  transition: filter 0.12s ease, transform 0.12s ease;
+}
+.menu_login:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
+}
+
 .menu_box {
   display: flex;
   flex-direction: column;
@@ -47,6 +81,31 @@
   align-items: center;
   z-index: 999;
 }
+.login_box {
+  position: fixed;
+  top: 12vh;
+  right: 2vw;
+  width: auto;
+  height: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+  min-width: 15vw;
+  
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* padding: 15px 10px; */
+  padding: 1vh 1vw 1vh 1vw;
+  gap: 1vh; /* Расстояние между элементами */
+  
+  background: rgba(240, 248, 255, 0.95);
+  border-radius: 1.5vw;
+  border: 2px solid rgb(0, 255, 179);
+  backdrop-filter: blur(0.5vh);
+  align-items: stretch;
+  z-index: 1001;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
 
 /* Контейнер меню с автоматическими размерами */
 .option_box {
@@ -57,12 +116,14 @@
   height: auto;
   max-height: 70vh;
   overflow-y: auto;
+  min-width: 15vw;
   
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 15px 10px;
-  gap: 8px; /* Расстояние между элементами */
+  /* padding: 15px 10px; */
+  padding: 1vh 1vw 1vh 1vw;
+  gap: 1vh; /* Расстояние между элементами */
   
   background: rgba(240, 248, 255, 0.95);
   border-radius: 1.5vw;
@@ -81,7 +142,6 @@
   width: 80%;
   min-height: 45px;
   padding: 10px 15px;
-  top: calc((4vh + 4vw) / 4);
   
   font-family: 'Press Start 2P', monospace;
   font-size: 12px;
@@ -95,6 +155,36 @@
   cursor: pointer;
   
   transition: all 0.3s ease;
+}
+
+.menu_logout_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  min-height: 45px;
+  padding: 10px 15px;
+  
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+}
+.menu_logout_item:hover {
+  background: #f68888;
+  border-color: rgb(0, 255, 179);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
+  text-decoration: none;
+  color: #333;
 }
 
 .menu_option_item:hover {
@@ -143,7 +233,9 @@
   .option_box {
     left: 5vw;
     right: 5vw;
-    min-width: auto;
+    /* min-width: auto; */
+    /* min-width: calc((50vw + 50vh) / 2); */
+
     width: auto;
     max-width: 90vw;
   }

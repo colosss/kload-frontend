@@ -2,7 +2,7 @@ import  { useState, useEffect } from "react";
 import "./App.css";
 import "./components/button_handler.css";
 import Header from "./components/Header";
-import { getAccessToken, getPosts, refreshOnce } from "./api";
+import {getPosts } from "./api";
 import Post_button from "./components/Post_button";
 import { Link } from "react-router-dom";
 // import api from "./api";
@@ -15,22 +15,7 @@ export default function App() {
   const limit=5;
   const [lastid, setLastid] = useState<number>(0);
 
-  const [access, setAccess] = useState<string | null>(() => getAccessToken());
-
-  useEffect(() => {
-    let mounted = true;
-    
-
-    refreshOnce()
-      .then((newAccess: string | null) => {
-        if (!mounted) return;
-        setAccess(newAccess ?? getAccessToken());
-      })
-      .catch(() => {
-        if (mounted) setAccess(getAccessToken());
-      });
-    return () => { mounted = false; };
-  }, []);
+  
 
   const [content, setContent] = useState<Array<{title:string, body:string, username:string, id:number}>>([]);
 

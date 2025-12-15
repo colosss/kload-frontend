@@ -7,6 +7,7 @@ import Register from "./pages/Register.tsx"
 import Confirm from './pages/Confirm.tsx' 
 import Profile from './pages/Profile.tsx'
 import Post from './pages/Post.tsx'
+import Logout from './pages/Logout.tsx'
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/confirm' element={<Confirm/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/post/:id' element={<Post/>}/>
+          <Route path='/logout' element={<Logout/>}/>
       </Routes>
     
     </BrowserRouter>

@@ -8,6 +8,7 @@ import  { useState, useEffect } from "react";
 import { getPostByID } from "../api"
 import Post_button from "../components/Post_button";
 import Delete_post_button from "../components/Delete_post_button";
+import api from "../api";
 
 
 export default function Post(){
@@ -15,6 +16,8 @@ export default function Post(){
     const idStr = params.id;
     const id = idStr ? Number(idStr) : 0;
     const [post, setPost] = useState<Array<{title:string, body:string, username:string, id:number}>>([]);
+    const [deleteFlag, setDeleteFlag] = useState<boolean>(false)
+    const [redactFlag, setRedactFlag] = useState<boolean>(false)
 
     useEffect(()=>{
         console.log(id)
@@ -41,7 +44,7 @@ export default function Post(){
         try {
         const response = await api.put(
         "/post/",
-        { title: title, body:post },
+        { title: post, body:post },
         { headers: { "Content-Type": "application/json" } }
         );
         // setSendStatus('success');
@@ -63,7 +66,7 @@ export default function Post(){
             <main>
                 <div className = "content_box">
 
-                    {/* <div className="profile_lable_text">Профиль</div> */}
+                    <div className="profile_lable_text">Форма редактирования и удаления постов</div>
                     {post.map((option, index) => (
                         <div className="content_text" key={index}style={{whiteSpace: "pre-wrap"}}>
                             <div className="lable_text" >{option.title}</div>
@@ -76,7 +79,8 @@ export default function Post(){
                     </div>
                 </div>
             </main>
-            <Post_button telo={post.map((option)=>option.body)} tema={post.map((option)=>option.title)} put={true} id={id}/>
+            {!deleteFlag&&<Post_button telo={post.map((option)=>option.body)} tema={post.map((option)=>option.title)} put={true} id={id} setfunc={setRedactFlag}/>}
+            {!redactFlag&&<Delete_post_button id={id} setfunc={setDeleteFlag}/>}
         </div>
     );
 }
