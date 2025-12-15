@@ -33,10 +33,13 @@
 
 
 .menu_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   border-color: rgba(0, 0, 0, 0);
   
-  width: calc((5vh + 5vw) / 2);
+  width: calc((2.5vh + 2.5vw) / 2);
   height: calc((2.5vh + 2.5vw) / 2);
   right: 2.5vw;
   top: calc((4vh + 4vw) / 4);
@@ -47,10 +50,8 @@
 }
 .menu_login_image {
   position: absolute;
-  width: calc((5vh + 5vw) / 2);
+  width: calc((2.5vh + 2.5vw) / 2);
   height: calc((2.5vh + 2.5vw) / 2);
-  left: 0vw;
-  top: 0vh;
   cursor: pointer;
   z-index: 1002;
   

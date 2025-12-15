@@ -1,0 +1,60 @@
+.bar_row{
+    display: flex;
+    flex-direction:row;
+    position: relative;
+    align-items: center;
+    gap: 1vw;
+}
+/* .bar_row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+} */
+
+/* общие размеры */
+.bar_button,
+.bar_page {
+    height: calc((5vh + 5vw) / 2);
+    width: calc((5vh + 5vw) / 2);
+}
+
+/* кнопка */
+.bar_button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+    background-image: url("../assets/post_menu.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Press Start 2P';
+    font-size: 24px;
+    color: white;
+}
+
+.bar_button:hover {
+    transform: scale(1.06);
+}
+
+/* центральное изображение + число */
+.bar_page {
+    background-image: url("../assets/post_menu.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Press Start 2P';
+    font-size: 24px;
+    color: white;
+    pointer-events: none; /* не кликается */
+}
