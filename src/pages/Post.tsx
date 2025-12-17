@@ -66,7 +66,7 @@ export default function Post(){
             <main>
                 <div className = "content_box">
 
-                    <div className="profile_lable_text">Форма редактирования и удаления постов</div>
+                    <div className="profile_lable_text">Форма редактирования и удаления поста</div>
                     {post.map((option, index) => (
                         <div className="content_text" key={index}style={{whiteSpace: "pre-wrap"}}>
                             <div className="lable_text" >{option.title}</div>

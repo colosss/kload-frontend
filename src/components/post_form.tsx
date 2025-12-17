@@ -96,7 +96,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
             <div className="post_form_box">
                 {sendStatus=='none'&&
                 <form  onSubmit={!put?handleSubmit:handleSubmit_put} noValidate>
-                    <div className="post_lable_text">{!put?"Форма создания постов":"Форма редактирования постов"}</div>
+                    <div className="post_lable_text">{!put?"Форма создания постов":"Форма редактирования поста"}</div>
                     <div className="post_text">Тема: </div>
                     <input
                     value={title}
