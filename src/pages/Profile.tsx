@@ -27,7 +27,7 @@ export default function Profile (){
 
     const [sendStatus, setSendStatus] = useState<'none'|'success'|'error'>('none');
     const [serverMessage, setServerMessage] = useState<string>('');
-    const [messages, setMessages] = useState<Array<{title:string, body:string, name_img:string, user_name:string, id:number}>>([]);
+    const [messages, setMessages] = useState<Array<{title:string, body:string, name_img:string, username:string, id:number}>>([]);
     const [expandedPosts, setExpandedPosts] = useState<Set<number>>(new Set());
     function ButtonProfile(){
         setFormFlag(!formFlag)
@@ -189,7 +189,7 @@ export default function Profile (){
                                         style={{ border: 'none', background: 'none', cursor: 'pointer'}}>
                                     <div className="content_text" key={index} >
                                         <div className="lable_text">{post.title}</div>
-                                        <span style={{color:"red"}}>  {post.user_name + "@kload" }</span>
+                                        <span style={{color:"red"}}>  {post.username + "@kload" }</span>
                                         <span>:</span>
                                         <span style={{color: "green"}}>~</span>
                                         <span>$ </span>
