@@ -1,5 +1,5 @@
 import "./Pages.css"
-import Button from "../components/button_handler";
+// import Button from "../components/button_handler";
 import Header from "../components/Header";
 import "../App.css"
 import "./Profile.css";
@@ -8,7 +8,7 @@ import  { useState, useEffect } from "react";
 import { getPostByID } from "../api"
 import Post_button from "../components/Post_button";
 import Delete_post_button from "../components/Delete_post_button";
-import api from "../api";
+// import api from "../api";
 
 
 export default function Post(){
@@ -38,27 +38,27 @@ export default function Post(){
             console.error("Refresh failed during response handling:");
         }
     
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    // async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // e.preventDefault();
 
-        try {
-        const response = await api.put(
-        "/post/",
-        { title: post, body:post },
-        { headers: { "Content-Type": "application/json" } }
-        );
-        // setSendStatus('success');
-    } catch (error: any) {
-        // setSendStatus('error');
-        const serverMessage = error.response?.data?.details
-        ? Array.isArray(error.response.data.details)
-            ? error.response.data.details.join('\n')
-            : String(error.response.data.details)
-        : error.response?.data?.message || error.message || 'Ошибка при отправке';
-        // setServerMessage(serverMessage);
-        console.error("Ошибка при отправке данных:", error.response?.data || error.message);
-    }
-  }
+    //     try {
+    //     await api.put(
+    //     "/post/",
+    //     { title: post, body:post },
+    //     { headers: { "Content-Type": "application/json" } }
+    //     );
+    //     // setSendStatus('success');
+    // } catch (error: any) {
+    //     // setSendStatus('error');
+    //     const serverMessage = error.response?.data?.details
+    //     ? Array.isArray(error.response.data.details)
+    //         ? error.response.data.details.join('\n')
+    //         : String(error.response.data.details)
+    //     : error.response?.data?.message || error.message || 'Ошибка при отправке';
+    //     // setServerMessage(serverMessage);
+    //     console.error("Ошибка при отправке данных:", error.response?.data || error.message || serverMessage);
+    // }
+//   }
 
     return(
         <div>

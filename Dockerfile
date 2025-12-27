@@ -1,21 +1,27 @@
-# Используем современный и лёгкий Node.js
-FROM node:20-alpine
+# ================= BUILD STAGE =================
+FROM node:20-alpine AS build
 
-# Рабочая директория внутри контейнера
 WORKDIR /app
 
-# Копируем package.json и package-lock.json (или yarn.lock)
-# Если изменится package.json → npm install выполнится заново
 COPY package*.json ./
-
-# Устанавливаем зависимости (в том числе axios, react и т.д.)
 RUN npm install
 
-# Копируем весь проект в контейнер
 COPY . .
+RUN npm run build
 
-# Открываем порт для Vite (по умолчанию 5173)
-EXPOSE 5173
 
-# Указываем хост 0.0.0.0, чтобы был доступен из контейнера
-CMD ["npm", "run", "dev", "--", "--host"]
+# ================= PRODUCTION STAGE =================
+FROM nginx:alpine
+
+# Удаляем дефолтный конфиг
+RUN rm /etc/nginx/conf.d/default.conf
+
+# SPA-конфиг nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Копируем билд
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

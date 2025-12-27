@@ -5,11 +5,11 @@ import Button from "../components/button_handler";
 import { Link } from "react-router-dom";
 // import type React from "react";
 
-import { getPosts } from "../api";
+// import { getPosts } from "../api";
 import { useState, useEffect } from 'react';
 import "./Pages.css"
 import "../App.css"
-import type { AxiosError } from 'axios';
+// import type { AxiosError } from 'axios';
 
 export default function Profile (){
 
@@ -101,11 +101,8 @@ export default function Profile (){
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
             //Используется на случай если бек принимает данные в формате application/x-www-form-urlencoded
-            const params = new URLSearchParams({
-            username : username,
-            })
             try {
-            const response = await api.put(
+            await api.put(
             //Изменить путь
             "/user/",
             { username: username},
@@ -164,7 +161,6 @@ export default function Profile (){
                                     <Button 
                                     type="submit"
                                     flag_disabled={username.length<=3 || flag_username_error}
-                                    onClick={null}
                                     style={{position:"relative", marginRight:"10vw"}}
                                     >Подтвердить</Button>
                                 </form>}

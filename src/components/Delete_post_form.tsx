@@ -1,7 +1,7 @@
 import api from "../api"
 import "./post_form.css"
 import Button from "./button_handler"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 
 type Post_form_props={
@@ -26,7 +26,7 @@ export default function Delete_post_form(props:Post_form_props){
     e.preventDefault();
 
         try {
-        const response = await api.delete(
+        await api.delete(
         `/post/${id}`,
         { headers: { "Content-Type": "application/json" } }
         );

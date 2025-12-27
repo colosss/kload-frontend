@@ -3,7 +3,7 @@ import defualte from "../assets/delete_post_button.svg"
 import cancel from "../assets/post_button_cancel.svg"
 import "./post_button.css"
 import Delete_post_form from './Delete_post_form'
-import { Dispatch, SetStateAction } from "react"
+import type { Dispatch, SetStateAction } from "react"
 
 
 type BaseProps = {
@@ -23,11 +23,11 @@ export default function Delete_post_button (props:  Post_button_props) {
     const id:number=props.id;
     const [button_flag, setButton_flag] = useState(false);
 
-     function Button_click() {
+    function Button_click() {
         const newValue = !button_flag;
         setButton_flag(newValue);
 
-        if ("setfunc" in props) {
+        if ("setfunc" in props && props.setfunc !== undefined) {
             props.setfunc(newValue);
         }
     }

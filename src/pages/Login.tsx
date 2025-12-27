@@ -7,7 +7,7 @@ import "../components/button_handler.css";
 import Header from "../components/Header";
 import Input from '../components/input';
 import { Link } from "react-router";
-import { setAccessToken, refreshOnce} from "../api";
+import { setAccessToken} from "../api";
 
 export default function Login() {
 

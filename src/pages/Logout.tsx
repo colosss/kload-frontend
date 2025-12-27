@@ -30,7 +30,7 @@ export default function Logout(){
     e.preventDefault();
 
         try {
-        const response = await api.get(
+        await api.get(
         "/auth/logout/",
         { headers: { "Content-Type": "application/json" } }
         );

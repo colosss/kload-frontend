@@ -1,9 +1,9 @@
 import api from "../api"
 import "./post_form.css"
 import Button from "./button_handler"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
-import Post_button from "./Post_button"
+// import Post_button from "./Post_button"
 
 type Post_form_props={
     tema?:string | string[],
@@ -44,7 +44,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
         const bodyStr  = Array.isArray(post)  ? post.join("\n")  : post;
 
         try {
-        const response = await api.put(
+        await api.put(
         "/post/"+id,
         { title: titleStr, body:bodyStr},
         { headers: { "Content-Type": "application/json" } }
@@ -66,7 +66,7 @@ export default function Post_form({tema, telo, put, id}:Post_form_props){
     e.preventDefault();
 
         try {
-        const response = await api.post(
+        await api.post(
         "/post/",
         { title: title, body:post },
         { headers: { "Content-Type": "application/json" } }

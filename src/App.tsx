@@ -16,7 +16,7 @@ export default function App() {
   const limit=5;
   const [lastid, setLastid] = useState<number>(0);
   const [lastIdHistory, setLastIdHistory] = useState<number[]>([0]);
-  const [maxId, setMaxId] = useState<number>(0);
+  // const [maxId, setMaxId] = useState<number>(0);
   const [currentPage, setCurrentPage]=useState<number>(1);
 
 
@@ -82,7 +82,7 @@ export default function App() {
           ))}
 
           {/* <span>{access}</span> */}
-        <Page_bar currentPage={currentPage} onNext={nextPage} onPrev={prevPage}/>
+        <Page_bar currentPage={currentPage} onNext={nextPage} onPrev={prevPage} isNextDisabled={content.length < limit} isPrevDisabled={currentPage <= 1}/>
 
       </main>
       <Post_button/>

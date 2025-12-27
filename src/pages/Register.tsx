@@ -141,14 +141,9 @@ export default function Register() {
     }
 
     //Используется на случай если бек принимает данные в формате application/x-www-form-urlencoded
-    const params = new URLSearchParams({
-      login: login,
-      username : name,
-      password : password,
-      email:email,
-    })
+    
     try {
-    const response = await api.post(
+    await api.post(
       "/auth/registration/",
       { login:login, username: name, password, email },
       { headers: { "Content-Type": "application/json" } }
