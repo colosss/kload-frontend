@@ -147,7 +147,7 @@ export default function Profile (){
                     <div className="profile_lable_text">Профиль</div>
                     <div className='test_row'>
                         <div className='column_profile_info'>
-                            <span className="profile_text"><img src="../../public/default.png" alt="Default_photo" className="image_profile"/></span>
+                            <span className="profile_text"><img src="/default.png" alt="Default_photo" className="image_profile"/></span>
                             <span className="profile_text">Ник: <span style={{color:"red"}}>@{getingname}</span></span>
                             {/* <span className="profile_text">Логин: {!formFlag && "Mifugi1212"}</span> */}
                             {formFlag &&

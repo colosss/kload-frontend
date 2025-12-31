@@ -70,7 +70,7 @@ export default function Post(){
                     {post.map((option, index) => (
                         <div className="content_text" key={index}style={{whiteSpace: "pre-wrap"}}>
                             <div className="lable_text" >{option.title}</div>
-                            <span><img className="image" src="../../public/default.png" alt={"Profile image default.png"}/></span>
+                            <span><img className="image" src="/default.png" alt={"Profile image default.png"}/></span>
                             <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
                             {option.body}</div>
                     ))}

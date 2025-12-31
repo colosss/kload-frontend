@@ -74,7 +74,7 @@ export default function App() {
           {content.map((option, index) => (
             <div className="content_text" key={index}>
               <div className="lable_text" >{option.title}</div>
-              <span><img className="image" src="../public/default.png" alt={"Profile image default.png"}/></span>
+              <span><img className="image" src="/default.png" alt={"Profile image default.png"}/></span>
               <span style={{color:"red"}}>  {option.username + "@kload: " }</span>
               {option.body.slice(0, count_of_simvols - 3)+"...  "}{<Link to={`/post/${option.id}`}>  {"=>"}перейти к посту</Link>}
               
