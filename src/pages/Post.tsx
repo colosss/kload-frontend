@@ -34,7 +34,7 @@ export default function Post(){
         .catch((err) =>{
             console.error(err);
         });
-    },[]);{
+    },[id]);{
             console.error("Refresh failed during response handling:");
         }
     

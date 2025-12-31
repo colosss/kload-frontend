@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "/api/",
+    baseURL: "/api",
     withCredentials: true,
 });
 
@@ -111,7 +111,7 @@ export async function getPostByID(post_id:number): Promise<Post[]>{
     }
     try{
         console.log("Getting post by id: ", post_id, "...")
-        const res = await api.get(`/post/one/${post_id}`, {
+        const res = await api.get(`/post/one/${post_id}/`, {
             headers:{"Content-Type": "application/json"},
             withCredentials:true,
         });
