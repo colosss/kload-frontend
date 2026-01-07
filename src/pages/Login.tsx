@@ -121,11 +121,11 @@ function handleNameChange(v: string) {
 
       <main>
         <div className="form_box">
-          <h1 className="form_text">Авторизация</h1>
+          <div className="form_lable">Авторизация</div>
           {sendStatus!='none' && <div className="info_box">
             {sendStatus === 'success' && (
             <div>
-              <h5 className="form_text" >Вы вошли в аккаунт <span style={{color:"green"}}>{name}</span></h5>
+              <div className="form_text" >Вы вошли в аккаунт <span style={{color:"green"}}>{name}</span></div>
                 <Link to ="/">
                 <Button onClick={() => Button_click("b")} type={"button"} flag_disabled={false}>
                 На главную
@@ -134,7 +134,7 @@ function handleNameChange(v: string) {
             </div>
             )}
             {sendStatus === 'error' && (<div>
-              <h5 className="form_text" style={{color:"red"}}>{serverMessage}</h5>
+              <div className="form_text" style={{color:"red"}}>{serverMessage}</div>
                 <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
                 Заново
                 </Button>

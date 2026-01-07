@@ -37,7 +37,9 @@
 
 .lable_text{
   /* font-size: 28px; */
-  font-size: calc((1.5vh + 1.5vw) / 2);
+  /* font-size: calc((1.5vh + 1.5vw) / 2); */
+  font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
+
 
 }
 .content_text{
@@ -45,7 +47,8 @@
   font-family: 'Press Start 2P';
   font-style: normal;
   /* font-size: 24px; */
-  font-size: calc((1.5vh + 1.5vw) / 2);
+  /* font-size: calc((1.5vh + 1.5vw) / 2); */
+  font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
   text-align: left;
   background-color: #ffffff0c;
   padding: 0.5vh 0.5vw 0.5vh 0.5vw;

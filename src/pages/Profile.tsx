@@ -18,7 +18,9 @@ export default function Profile (){
 
 
     const [formFlag, setFormFlag] = useState<boolean>(false)
-    
+
+    const [testmessage, setTestmessage] = useState <Array<{title:string, body:string, name_img:string, username:string, id:number}>>([{title:"Ffaasd", body:"bbbbbbbbbb", name_img:"default.png", username:"test", id:0}]);
+
     
     const [username, setUsername] = useState <string>("")
     const [getingname, setGetingname] = useState <string>("")
@@ -137,7 +139,7 @@ export default function Profile (){
                         </div>
                         )}
                         {sendStatus === 'error' && (<div>
-                        <h5 className="f orm_text" style={{color:"red"}}>{serverMessage}</h5>
+                        <h5 className="form_text" style={{color:"red"}}>{serverMessage}</h5>
                             <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
                             Заново
                             </Button>
@@ -151,19 +153,20 @@ export default function Profile (){
                             <span className="profile_text">Ник: <span style={{color:"red"}}>@{getingname}</span></span>
                             {/* <span className="profile_text">Логин: {!formFlag && "Mifugi1212"}</span> */}
                             {formFlag &&
-                                <form onSubmit={handleSubmit} noValidate>
+                                <form onSubmit={handleSubmit} noValidate className='form_profile'>
                                     <input type="text"
                                             style={{maxWidth:"100%"}}
                                             onChange={handleChange}
                                             onBlur={handleBlur} 
                                             value={username}
-                                            className={flag_username_error==true ? "input_area_incorrect" : "input_area" }/>
-                                    <Button 
+                                            className={flag_username_error==true ? "input_profile_area_incorrect" : "input_profile_area" }/>
+                                    
+                                </form>}
+                            {formFlag && <Button 
                                     type="submit"
                                     flag_disabled={username.length<=3 || flag_username_error}
                                     style={{position:"relative", marginRight:"10vw"}}
-                                    >Подтвердить</Button>
-                                </form>}
+                                    >Подтвердить</Button>}
                             <Button 
                             type="button"
                             flag_disabled={false}

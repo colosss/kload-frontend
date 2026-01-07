@@ -31,7 +31,7 @@
     margin: 2.5vh auto 0;
     font-family: 'Press Start 2P';
     font-style: normal;
-    font-size: 32px;
+    font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
     text-align: center;
     color: #000000;
     box-sizing: border-box;
@@ -46,7 +46,7 @@
     margin: 2.5vh auto 0;
     font-family: 'Press Start 2P';
     font-style: normal;
-    font-size: 24px;
+    font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
     text-align: center;
     color: #000000;
     box-sizing: border-box;
@@ -61,7 +61,7 @@
     margin: 2.5vh auto 0;
     font-family: 'Press Start 2P';
     font-style: normal;
-    font-size: 18px;
+    font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
     text-align: left;
     padding: 2.5vh 2.5vw 2.5vh 2.5vw;
     color: #ffffff;
@@ -80,7 +80,7 @@
     margin: 2.5vh auto 0;
     font-family: 'Press Start 2P';
     font-style: normal;
-    font-size: 18px;
+    font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
     text-align: left;
     padding: 2.5vh 2.5vw 0 2.5vw;
     color: #ffffff;

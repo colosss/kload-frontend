@@ -1,33 +1,50 @@
-.Button{
-    height: 5vh;
-    width: 25vw;
-    margin-top: 1.5vh;
-    background-color: aqua;
-    border-style: dashed;
-    border-color:black;
-    border-width: 0.3vh;
-    border-radius: 5;
-    color:black;
+.Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* размеры */
+
+    min-height: max(44px, 2.8em);
+    padding: 0.6em;
+    width: clamp(140px, 55vw, 260px);
+    max-width: 100%;
+
+    /* текст */
     font-family: 'Press Start 2P';
+    font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 14px);
+    line-height: 1.3;
     text-align: center;
-    margin-bottom: 1.5vh;
+    white-space: normal;      /* разрешаем перенос */
+    word-break: break-word;   /* длинные слова не ломают кнопку */
 
+    /* внешний вид */
+    background-color: aqua;
+    color: black;
+    border: 0.15em dashed black;
+    border-radius: 0.6em;
 
-
-}
-.Button:disabled{
-    background-color: darkslategrey;
-
-}
-.Button:active{
-    color: aliceblue;
-
-}
-.Button:hover{
+    margin: 0.8em 0;
     cursor: pointer;
-    background-color:#88C1F6;
-    transform: translateY(-2px);
 
-    border-color: black;
-    
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.Button:hover:not(:disabled) {
+    background-color: #88C1F6;
+    transform: translateY(-2px);
+}
+
+.Button:active:not(:disabled) {
+    transform: translateY(0);
+    color: aliceblue;
+}
+
+.Button:disabled {
+    background-color: darkslategrey;
+    opacity: 0.7;
+    cursor: not-allowed;
 }

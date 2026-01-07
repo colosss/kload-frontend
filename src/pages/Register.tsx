@@ -169,11 +169,11 @@ export default function Register() {
 
       <main>
         <div className="form_box">
-          <h1 className="form_text">Регистрация</h1>
+          <div className="form_lable">Регистрация</div>
           {sendStatus!='none' && <div className="info_box">
             {sendStatus === 'success' && (
             <div>
-              <h5 className="form_text" >На вашу почту <span style={{color:"green"}}>{email}</span> было отправлено письмо для подтверждения</h5>
+              <div className="form_text" >На вашу почту <span style={{color:"green"}}>{email}</span> было отправлено письмо для подтверждения</div>
                 <Link to ="/">
                 <Button onClick={() => Button_click("b")} type={"button"} flag_disabled={false}>
                 На главную
@@ -182,7 +182,7 @@ export default function Register() {
             </div>
             )}
             {sendStatus === 'error' && (<div>
-              <h5 className="form_text" style={{color:"red"}}>{serverMessage}</h5>
+              <div className="form_text" style={{color:"red"}}>{serverMessage}</div>
                 <Button onClick={() => Reload_Page()} type={"button"} flag_disabled={false}>
                 Заново
                 </Button>

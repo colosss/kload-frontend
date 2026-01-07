@@ -82,132 +82,95 @@
   align-items: center;
   z-index: 999;
 }
+/* Общие стили для обоих выпадающих меню */
+.option_box,
 .login_box {
-  position: fixed;
-  top: 12vh;
-  right: 2vw;
-  width: auto;
-  height: auto;
-  max-height: 70vh;
-  overflow-y: auto;
-  min-width: 15vw;
-  
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  /* padding: 15px 10px; */
-  padding: 1vh 1vw 1vh 1vw;
-  gap: 1vh; /* Расстояние между элементами */
-  
-  background: rgba(240, 248, 255, 0.95);
-  border-radius: 1.5vw;
-  border: 2px solid rgb(0, 255, 179);
-  backdrop-filter: blur(0.5vh);
-  align-items: stretch;
-  z-index: 1001;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: fit-content; /* Ключ — меню подстраивается под содержимое */
+    min-width: 15vw;    /* Минимальная ширина, чтобы не сжималось слишком сильно */
+    max-width: 40vw;    /* Опционально — верхний лимит на широких экранах */
+    max-height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2vh 1.5vw; /* Красивые одинаковые отступы со всех сторон */
+    gap: 1vh; /* Расстояние между кнопками */
+    background: rgba(240, 248, 255, 0.95);
+    border-radius: 1.5vw;
+    border: 2px solid rgb(0, 255, 179);
+    backdrop-filter: blur(0.5vh);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    box-sizing: border-box;
 }
 
-/* Контейнер меню с автоматическими размерами */
+/* Позиционирование конкретно для каждого меню */
 .option_box {
-  position: fixed;
-  top: 12vh;
-  left: 2vw;
-  width: auto;
-  height: auto;
-  max-height: 70vh;
-  overflow-y: auto;
-  min-width: 15vw;
-  
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  /* padding: 15px 10px; */
-  padding: 1vh 1vw 1vh 1vw;
-  gap: 1vh; /* Расстояние между элементами */
-  
-  background: rgba(240, 248, 255, 0.95);
-  border-radius: 1.5vw;
-  border: 2px solid rgb(0, 255, 179);
-  backdrop-filter: blur(0.5vh);
-  align-items: stretch;
-  z-index: 1001;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    top: 12vh;
+    left: 2vw;
 }
 
-/* Стили для элементов меню */
-.menu_option_item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  min-height: 45px;
-  padding: 10px 15px;
-  
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  
-  transition: all 0.3s ease;
+.login_box {
+    top: 12vh;
+    right: 2vw;
 }
 
+/* Стили кнопок внутри меню — теперь на 100% ширины контейнера */
+.menu_option_item,
 .menu_logout_item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  min-height: 45px;
-  padding: 10px 15px;
-  
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  
-  background: rgba(255, 255, 255, 0.8);
-  border: 2px solid transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  
-  transition: all 0.3s ease;
-}
-.menu_logout_item:hover {
-  background: #f68888;
-  border-color: rgb(0, 255, 179);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
-  text-decoration: none;
-  color: #333;
+    width: 100%; /* Занимают всю доступную ширину */
+    min-height: 45px;
+    padding: 12px 16px; /* Хорошие внутренние отступы */
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    white-space: nowrap; /* Текст не переносится */
 }
 
+/* Ховеры остаются как были */
 .menu_option_item:hover {
-  background: #88C1F6;
-  border-color: rgb(0, 255, 179);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
-  text-decoration: none;
-  color: #333;
+    background: #88C1F6;
+    border-color: rgb(0, 255, 179);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
 }
 
+.menu_logout_item:hover {
+    background: #f68888;
+    border-color: rgb(0, 255, 179);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
+}
 .menu_option_item:active {
   transform: translateY(0);
   transition: all 0.1s ease;
 }
 
+.menu_text_wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .menu_text_button {
   position: absolute;
   font-family: 'Press Start 2P';
-  top: calc(70% - 64px/2 + 0.5px);
-  font-size: 28px;
-  line-height: 32px;
+  /* top: calc(70% - 64px/2 + 0.5px); */
+  top: 50%;
+  /* transform: translateY(-50%); */
+  transform: translateY(-50%) scale(1);
+  transition: transform 0.2s ease;
+  font-size: clamp(14px, 4vw, 28px);
+  line-height: 1.2;
   color: #FFFFFF;
   background: none;
   border: none;
@@ -219,13 +182,13 @@
 
 .menu_text_button:hover {
   text-shadow: 0 0 8px #0ff;
-  transform: scale(1.05);
+  transform: translateY(-50%) scale(1.05);
   transition: all 0.2s ease;
   color: #FFFFFF;
 }
 
 .menu_text_button:active {
-  transform: scale(0.97);
+  transform: translateY(-50%) scale(0.97);
   opacity: 0.8;
 }
 
