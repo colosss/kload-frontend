@@ -2,7 +2,7 @@ import './Header.css';
 import menu_option from '../assets/menu_option.svg';
 import menu_option_active from '../assets/menu_option_active.svg';
 import login_icon from '../assets/login_icon.svg';
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate если нужен logout
+import { Link } from 'react-router-dom'; // useNavigate если нужен logout
 import { useState, useEffect, useRef } from 'react';
 import { getAccessToken, refreshOnce } from "../api";
 

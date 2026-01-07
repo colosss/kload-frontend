@@ -19,7 +19,7 @@ export default function Profile (){
 
     const [formFlag, setFormFlag] = useState<boolean>(false)
 
-    const [testmessage, setTestmessage] = useState <Array<{title:string, body:string, name_img:string, username:string, id:number}>>([{title:"Ffaasd", body:"bbbbbbbbbb", name_img:"default.png", username:"test", id:0}]);
+    // const [testmessage, setTestmessage] = useState <Array<{title:string, body:string, name_img:string, username:string, id:number}>>([{title:"Ffaasd", body:"bbbbbbbbbb", name_img:"default.png", username:"test", id:0}]);
 
     
     const [username, setUsername] = useState <string>("")
