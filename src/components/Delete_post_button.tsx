@@ -35,7 +35,6 @@ export default function Delete_post_button (props:  Post_button_props) {
     return(
         <div>
             {button_flag && <Delete_post_form id={id}/>}
-
             <button className={!button_flag?'delete_post_button': 'post_button'} type="button" onClick={()=>Button_click()}>
                 <img className={!button_flag?'delete_post_image_button':'post_image_button'} src={!button_flag ? defualte : cancel} alt={!button_flag ? 'post_button' : 'post_button_cancel'}/>
             </button>

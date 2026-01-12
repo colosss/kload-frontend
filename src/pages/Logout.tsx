@@ -5,6 +5,7 @@ import "../App.css"
 import api, { getAccessToken, setAccessToken } from "../api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 export default function Logout(){
@@ -16,7 +17,6 @@ export default function Logout(){
         window.location.reload();
     }
 
-
     useEffect(()=>{
         if(getAccessToken()!=null && getAccessToken()!=''){
             setAccessFlag(true)
@@ -27,25 +27,38 @@ export default function Logout(){
     }, []);
     
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+        e.preventDefault();
 
         try {
-        await api.get(
-        "/auth/logout/",
-        { headers: { "Content-Type": "application/json" } }
-        );
-        setAccessToken(null)
-        setSendStatus('success');
-    } catch (error: any) {
-        setSendStatus('error');
-        const serverMessage = error.response?.data?.details
-        ? Array.isArray(error.response.data.details)
-            ? error.response.data.details.join('\n')
-            : String(error.response.data.details)
-        : error.response?.data?.message || error.message || 'Ошибка при отправке';
-        setServerMessage(serverMessage);
-        console.error("Ошибка при отправке данных:", error.response?.data || error.message);
-    }
+            await api.get(
+            "/auth/logout/",
+            { headers: { "Content-Type": "application/json" } }
+            );
+            setAccessToken(null)
+            setSendStatus('success');
+        }catch (error: unknown) {
+            setSendStatus('error');
+            let serverMessage = 'Ошибка при отправке';
+            if (axios.isAxiosError(error)) {
+                const responseData = error.response?.data;
+                if (responseData?.details) {
+                    serverMessage = Array.isArray(responseData.details)
+                        ? responseData.details.join('\n')
+                        : String(responseData.details);
+                } else if (responseData?.message) {
+                    serverMessage = responseData.message;
+                } else if (error.message) {
+                    serverMessage = error.message;
+                }
+            } else if (error instanceof Error) {
+                serverMessage = error.message;
+            } else if (typeof error === 'string') {
+                serverMessage = error;
+            }
+
+            setServerMessage(serverMessage);
+            console.error("Ошибка logout:", error);
+        }
     }  
 
 

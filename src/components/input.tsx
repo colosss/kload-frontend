@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import './input.css'
 import '../App.css'
 import type { CSSProperties, ReactNode } from 'react';
@@ -21,7 +20,7 @@ export default function Input({style, children, type, flag_error, setValue, valu
         setValue(event.target.value)
     }
     function handleBlur() {
-    if (onBlur) onBlur();
+        if (onBlur) onBlur();
     }
 
     return(

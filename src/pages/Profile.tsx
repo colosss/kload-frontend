@@ -3,24 +3,16 @@ import './Profile.css'
 import Header from "../components/Header";
 import Button from "../components/button_handler";
 import { Link } from "react-router-dom";
-// import type React from "react";
-
-// import { getPosts } from "../api";
 import { useState, useEffect } from 'react';
 import "./Pages.css"
 import "../App.css"
-// import type { AxiosError } from 'axios';
+import axios from 'axios';
 
 export default function Profile (){
-
     const count_of_simvols=30;
     const count_more_simvols=120;
 
-
     const [formFlag, setFormFlag] = useState<boolean>(false)
-
-    // const [testmessage, setTestmessage] = useState <Array<{title:string, body:string, name_img:string, username:string, id:number}>>([{title:"Ffaasd", body:"bbbbbbbbbb", name_img:"default.png", username:"test", id:0}]);
-
     
     const [username, setUsername] = useState <string>("")
     const [getingname, setGetingname] = useState <string>("")
@@ -46,7 +38,7 @@ export default function Profile (){
         setFlag_username_error(!validateUserName(username));
     }
     function handleBlur() {
-    if (handleUserNameBlur) handleUserNameBlur();
+        if (handleUserNameBlur) handleUserNameBlur();
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>){
@@ -102,24 +94,34 @@ export default function Profile (){
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-            //Используется на случай если бек принимает данные в формате application/x-www-form-urlencoded
             try {
             await api.put(
-            //Изменить путь
             "/user/",
             { username: username},
             { headers: { "Content-Type": "application/json" } }
             );
             setSendStatus('success');
-        } catch (error: any) {
+        }catch (error: unknown) {
             setSendStatus('error');
-            const serverMessage = error.response?.data?.details
-            ? Array.isArray(error.response.data.details)
-                ? error.response.data.details.join('\n')
-                : String(error.response.data.details)
-            : error.response?.data?.message || error.message || 'Ошибка при отправке';
+            let serverMessage = 'Ошибка при отправке';
+            if (axios.isAxiosError(error)) {
+                const responseData = error.response?.data;
+                if (responseData?.details) {
+                    serverMessage = Array.isArray(responseData.details)
+                        ? responseData.details.join('\n')
+                        : String(responseData.details);
+                } else if (responseData?.message) {
+                    serverMessage = responseData.message;
+                } else if (error.message) {
+                    serverMessage = error.message;
+                }
+            } else if (error instanceof Error) {
+                serverMessage = error.message;
+            } else if (typeof error === 'string') {
+                serverMessage = error;
+            }
             setServerMessage(serverMessage);
-            console.error("Ошибка при отправке данных:", error.response?.data || error.message);
+            console.error("Ошибка изменения имени:", error);
         }
     }
     return(
@@ -151,7 +153,6 @@ export default function Profile (){
                         <div className='column_profile_info'>
                             <span className="profile_text"><img src="/default.png" alt="Default_photo" className="image_profile"/></span>
                             <span className="profile_text">Ник: <span style={{color:"red"}}>@{getingname}</span></span>
-                            {/* <span className="profile_text">Логин: {!formFlag && "Mifugi1212"}</span> */}
                             {formFlag &&
                                 <form onSubmit={handleSubmit} noValidate className='form_profile'>
                                     <input type="text"

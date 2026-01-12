@@ -1,69 +1,65 @@
 .menu_option {
-  position: absolute;
-  border-color: rgba(0, 0, 0, 0);
-  
-  width: calc((5vh + 5vw) / 2);
-  height: calc((2.5vh + 2.5vw) / 2);
-  left: 2.5vw;
-  top: calc((4vh + 4vw) / 4);
-  cursor: pointer;
-  z-index: 1002;
-  background-color: rgba(0, 0, 0, 0);
-  
+	position: absolute;
+	border-color: rgba(0, 0, 0, 0);
+	
+	width: calc((5vh + 5vw) / 2);
+	height: calc((2.5vh + 2.5vw) / 2);
+	left: 2.5vw;
+	top: calc((4vh + 4vw) / 4);
+	cursor: pointer;
+	z-index: 1002;
+	background-color: rgba(0, 0, 0, 0);
 }
 .menu_option_image {
-  position: absolute;
-  width: calc((5vh + 5vw) / 2);
-  height: calc((2.5vh + 2.5vw) / 2);
-  left: 0vw;
-  top: 0vh;
-  cursor: pointer;
-  z-index: 1002;
-  
+	position: absolute;
+	width: calc((5vh + 5vw) / 2);
+	height: calc((2.5vh + 2.5vw) / 2);
+	left: 0vw;
+	top: 0vh;
+	cursor: pointer;
+	z-index: 1002;
 }
 .menu_option:hover .menu_option_image {
-  filter: brightness(1.15) saturate(1.2);
-  transform: translateY(-1px);
-  transition: filter 0.12s ease, transform 0.12s ease;
+	filter: brightness(1.15) saturate(1.2);
+	transform: translateY(-1px);
+	transition: filter 0.12s ease, transform 0.12s ease;
 }
 .menu_option:hover {
-  transform: scale(1.06);
-  box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
+	transform: scale(1.06);
+	box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
 }
 
 
 .menu_login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  border-color: rgba(0, 0, 0, 0);
-  
-  width: calc((2.5vh + 2.5vw) / 2);
-  height: calc((2.5vh + 2.5vw) / 2);
-  right: 2.5vw;
-  top: calc((4vh + 4vw) / 4);
-  cursor: pointer;
-  z-index: 1002;
-  background-color: rgba(0, 0, 0, 0);
-  
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	border-color: rgba(0, 0, 0, 0);
+	
+	width: calc((2.5vh + 2.5vw) / 2);
+	height: calc((2.5vh + 2.5vw) / 2);
+	right: 2.5vw;
+	top: calc((4vh + 4vw) / 4);
+	cursor: pointer;
+	z-index: 1002;
+	background-color: rgba(0, 0, 0, 0);
 }
 .menu_login_image {
-  position: absolute;
-  width: calc((2.5vh + 2.5vw) / 2);
-  height: calc((2.5vh + 2.5vw) / 2);
-  cursor: pointer;
-  z-index: 1002;
-  
+	position: absolute;
+	width: calc((2.5vh + 2.5vw) / 2);
+	height: calc((2.5vh + 2.5vw) / 2);
+	cursor: pointer;
+	z-index: 1002;
 }
 .menu_login:hover .menu_login_image {
-  filter: brightness(1.15) saturate(1.2);
-  transform: translateY(-1px);
-  transition: filter 0.12s ease, transform 0.12s ease;
+	filter: brightness(1.15) saturate(1.2);
+	transform: translateY(-1px);
+	transition: filter 0.12s ease, transform 0.12s ease;
 }
 .menu_login:hover {
-  transform: scale(1.06);
-  box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
+	transform: scale(1.06);
+	box-shadow: 0 6px 18px rgba(0,255,179,0.18), 0 0 12px rgba(0,255,179,0.06);
 }
 
 .menu_box {
@@ -82,131 +78,123 @@
   align-items: center;
   z-index: 999;
 }
-/* Общие стили для обоих выпадающих меню */
+
 .option_box,
 .login_box {
-    position: fixed;
-    width: fit-content; /* Ключ — меню подстраивается под содержимое */
-    min-width: 15vw;    /* Минимальная ширина, чтобы не сжималось слишком сильно */
-    max-width: 40vw;    /* Опционально — верхний лимит на широких экранах */
-    max-height: 70vh;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 1.2vh 1.5vw; /* Красивые одинаковые отступы со всех сторон */
-    gap: 1vh; /* Расстояние между кнопками */
-    background: rgba(240, 248, 255, 0.95);
-    border-radius: 1.5vw;
-    border: 2px solid rgb(0, 255, 179);
-    backdrop-filter: blur(0.5vh);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
-    box-sizing: border-box;
+	position: fixed;
+	width: fit-content;
+	min-width: 15vw;
+	max-width: 40vw;
+	max-height: 70vh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	padding: 1.2vh 1.5vw;
+	gap: 1vh;
+	background: rgba(240, 248, 255, 0.95);
+	border-radius: 1.5vw;
+	border: 2px solid rgb(0, 255, 179);
+	backdrop-filter: blur(0.5vh);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	z-index: 1001;
+	box-sizing: border-box;
 }
 
-/* Позиционирование конкретно для каждого меню */
 .option_box {
-    top: 12vh;
-    left: 2vw;
+	top: 12vh;
+	left: 2vw;
 }
 
 .login_box {
-    top: 12vh;
-    right: 2vw;
+	top: 12vh;
+	right: 2vw;
 }
 
-/* Стили кнопок внутри меню — теперь на 100% ширины контейнера */
 .menu_option_item,
 .menu_logout_item {
-    width: 100%; /* Занимают всю доступную ширину */
-    min-height: 45px;
-    padding: 12px 16px; /* Хорошие внутренние отступы */
-    font-family: 'Press Start 2P', monospace;
-    font-size: 12px;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    white-space: nowrap; /* Текст не переносится */
+	width: 100%;
+	min-height: 45px;
+	padding: 12px 16px;
+	font-family: 'Press Start 2P', monospace;
+	font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	background: rgba(255, 255, 255, 0.8);
+	border: 2px solid transparent;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-sizing: border-box;
+	white-space: nowrap;
 }
 
-/* Ховеры остаются как были */
 .menu_option_item:hover {
-    background: #88C1F6;
-    border-color: rgb(0, 255, 179);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
+	background: #88C1F6;
+	border-color: rgb(0, 255, 179);
+	transform: translateY(-2px);
+	box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
 }
 
 .menu_logout_item:hover {
-    background: #f68888;
-    border-color: rgb(0, 255, 179);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
+	background: #f68888;
+	border-color: rgb(0, 255, 179);
+	transform: translateY(-2px);
+	box-shadow: 0 2px 8px rgba(0, 255, 179, 0.3);
 }
 .menu_option_item:active {
-  transform: translateY(0);
-  transition: all 0.1s ease;
+	transform: translateY(0);
+	transition: all 0.1s ease;
 }
 
 .menu_text_wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .menu_text_button {
-  position: absolute;
-  font-family: 'Press Start 2P';
-  /* top: calc(70% - 64px/2 + 0.5px); */
-  top: 50%;
-  /* transform: translateY(-50%); */
-  transform: translateY(-50%) scale(1);
-  transition: transform 0.2s ease;
-  font-size: clamp(14px, 4vw, 28px);
-  line-height: 1.2;
-  color: #FFFFFF;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  user-select: none;
-  text-decoration: none;
+	position: absolute;
+	font-family: 'Press Start 2P';
+	top: 50%;
+	transform: translateY(-50%) scale(1);
+	transition: transform 0.2s ease;
+	font-size: clamp(14px, 4vw, 28px);
+	line-height: 1.2;
+	color: #FFFFFF;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	user-select: none;
+	text-decoration: none;
 }
 
 .menu_text_button:hover {
-  text-shadow: 0 0 8px #0ff;
-  transform: translateY(-50%) scale(1.05);
-  transition: all 0.2s ease;
-  color: #FFFFFF;
+	text-shadow: 0 0 8px #0ff;
+	transform: translateY(-50%) scale(1.05);
+	transition: all 0.2s ease;
+	color: #FFFFFF;
 }
 
 .menu_text_button:active {
-  transform: translateY(-50%) scale(0.97);
-  opacity: 0.8;
+	transform: translateY(-50%) scale(0.97);
+	opacity: 0.8;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
-  .option_box {
-    left: 5vw;
-    right: 5vw;
-    /* min-width: auto; */
-    /* min-width: calc((50vw + 50vh) / 2); */
+	.option_box {
+		left: 5vw;
+		right: 5vw;
 
-    width: auto;
-    max-width: 90vw;
-  }
-  
-  .menu_option_item {
-    font-size: 10px;
-    min-height: 40px;
-    padding: 8px 12px;
-  }
+		width: auto;
+		max-width: 90vw;
+	}
+	
+	.menu_option_item {
+		font-size: 10px;
+		min-height: 40px;
+		padding: 8px 12px;
+	}
 }

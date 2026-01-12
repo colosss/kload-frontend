@@ -1,5 +1,4 @@
 .post_form_box {
-    
     position: fixed;
     width:95vw;
     left:2.5vw;
@@ -39,8 +38,6 @@
 
 }
 .post_text{
-    /* position: relative;
-    right: 37.5vw; */
     width: 100%;
     max-width: 60ch;
     margin: 2.5vh auto 0;
@@ -55,7 +52,6 @@
 
 .title_area{
     resize: none;
-    
     width: 90%;
     height: auto;
     margin: 2.5vh auto 0;
@@ -87,7 +83,4 @@
     box-sizing: border-box;
     background: #00000085;
     border-radius: 1.5vw;
-
-    /* overflow-wrap: anywhere; */
-
 }

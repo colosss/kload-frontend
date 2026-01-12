@@ -5,20 +5,13 @@
     align-items: center;
     gap: 1vw;
 }
-/* .bar_row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-} */
 
-/* общие размеры */
 .bar_button,
 .bar_page {
     height: calc((5vh + 5vw) / 2);
     width: calc((5vh + 5vw) / 2);
 }
 
-/* кнопка */
 .bar_button {
     cursor: pointer;
     border: none;
@@ -42,7 +35,6 @@
     transform: scale(1.06);
 }
 
-/* центральное изображение + число */
 .bar_page {
     background-image: url("../assets/post_menu.svg");
     background-size: cover;
@@ -56,5 +48,5 @@
     font-family: 'Press Start 2P';
     font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
     color: white;
-    pointer-events: none; /* не кликается */
+    pointer-events: none;
 }
