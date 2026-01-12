@@ -155,18 +155,17 @@ export default function Profile (){
                             {formFlag &&
                                 <form onSubmit={handleSubmit} noValidate className='form_profile'>
                                     <input type="text"
-                                            style={{maxWidth:"100%"}}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur} 
-                                            value={username}
-                                            className={flag_username_error==true ? "input_profile_area_incorrect" : "input_profile_area" }/>
-                                    
+                                        style={{maxWidth:"100%"}}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} 
+                                        value={username}
+                                        className={flag_username_error==true ? "input_profile_area_incorrect" : "input_profile_area" }/>
+                                        <Button 
+                                        type="submit"
+                                        flag_disabled={username.length<=3 || flag_username_error}
+                                        style={{position:"relative", marginRight:"10vw"}}
+                                        >Подтвердить</Button>
                                 </form>}
-                            {formFlag && <Button 
-                                    type="submit"
-                                    flag_disabled={username.length<=3 || flag_username_error}
-                                    style={{position:"relative", marginRight:"10vw"}}
-                                    >Подтвердить</Button>}
                             <Button 
                             type="button"
                             flag_disabled={false}
