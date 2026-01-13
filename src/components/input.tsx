@@ -13,9 +13,10 @@ type InputProps={
     touched?:boolean
     errorMessage?:string
     style?: CSSProperties
+    disableFlag?:boolean
 }
 
-export default function Input({style, children, type, flag_error, setValue, value, onBlur, touched = false, errorMessage=""}: InputProps){
+export default function Input({style, children, type, flag_error, setValue, value, onBlur, touched = false, errorMessage="", disableFlag=false}: InputProps){
     function handleChange(event: React.ChangeEvent<HTMLInputElement>){
         setValue(event.target.value)
     }
@@ -30,7 +31,7 @@ export default function Input({style, children, type, flag_error, setValue, valu
                     <span className='input_text'>{children}</span>
                 </div>
                 <div>
-                    <input style={style} type={type} value={value} onChange={handleChange} onBlur={handleBlur} className={flag_error==true ? "input_area_incorrect" : "input_area" }/>
+                    <input style={style} disabled={disableFlag} type={type} value={value} onChange={handleChange} onBlur={handleBlur} className={flag_error==true ? "input_area_incorrect" : "input_area" }/>
                     {touched && flag_error && <div className="error_message">{errorMessage}</div>}
                 </div>
             </label>

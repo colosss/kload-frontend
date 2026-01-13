@@ -1,87 +1,70 @@
 #root {
-  
-  
-  margin: 0 auto;
-  padding-left: calc((2.5vh + 2.5vw) / 2);   /* опционально: симулирует боковые отступы */
-  padding-right: calc((2.5vh + 2.5vw) / 2);
-  display: flex;
-  flex-direction:column;
-  box-sizing: border-box;
-  align-items: center;
-
-
-
+	margin: 0 auto;
+	padding-left: calc((2.5vh + 2.5vw) / 2);
+	padding-right: calc((2.5vh + 2.5vw) / 2);
+	display: flex;
+	flex-direction:column;
+	box-sizing: border-box;
+	align-items: center;
 }
 
 
 .content_box{
-  display: flex;
-  flex-direction:column;
-  box-sizing: border-box;
+	display: flex;
+	flex-direction:column;
+	box-sizing: border-box;
 
-  /* width: 95vw; */
-  min-height: 82.5vh;
-  margin: calc((10vh + 10vw) / 2) auto 5vh auto; /* ← центр по горизонали (auto) */
-  padding: 2.5vh 3vw 3vh 3vw; /* внутренние отступы, снизу место для “пустоты” */
-  gap:calc((2.5vh + 2.5vw) / 2);
-  background:rgb(0, 0, 0,0.90);
-  border-radius: 2.5vw;
-  box-shadow:
-      0 0 calc((1.5vh + 1.5vw) / 2) calc((1.5vh + 1.5vw) / 2) #000000;
-  ;
-  backdrop-filter: blur(0.5vh);
-  align-items: center;
-  z-index: auto;
+	min-height: 82.5vh;
+	margin: calc((10vh + 10vw) / 2) auto 5vh auto;
+	padding: 2.5vh 3vw 3vh 3vw;
+	gap:calc((2.5vh + 2.5vw) / 2);
+	background:rgb(0, 0, 0,0.90);
+	border-radius: 2.5vw;
+	box-shadow:
+		0 0 calc((1.5vh + 1.5vw) / 2) calc((1.5vh + 1.5vw) / 2) #000000;
+	;
+	backdrop-filter: blur(0.5vh);
+	align-items: center;
+	z-index: auto;
 
 }
 
 .lable_text{
-  /* font-size: 28px; */
-  /* font-size: calc((1.5vh + 1.5vw) / 2); */
-  font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
-
-
+  	font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
 }
 .content_text{
-  width: 100%;
-  font-family: 'Press Start 2P';
-  font-style: normal;
-  /* font-size: 24px; */
-  /* font-size: calc((1.5vh + 1.5vw) / 2); */
-  font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
-  text-align: left;
-  background-color: #ffffff0c;
-  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
-  border-radius: 0.5vw;
+	width: 100%;
+	font-family: 'Press Start 2P';
+	font-style: normal;
+	font-size: clamp(10px, calc((1.5vh + 1.5vw) / 2), 24px);
+	text-align: left;
+	background-color: #ffffff0c;
+	padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+	border-radius: 0.5vw;
 
-  border: rgb(0, 255, 179);
-  border-style:dashed;
-  overflow-wrap: anywhere;
+	border: rgb(0, 255, 179);
+	border-style:dashed;
+	overflow-wrap: anywhere;
 
-  color: #ffffff;
+	color: #ffffff;
 }
 .button_box{
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top:1.5vh;
-
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top:1.5vh;
 }
 
 .image{
-  width: calc((5vh + 5vw) / 2);
-  height: calc((5vh + 5vw) / 2);
-  border: rgb(0, 255, 179);
-  border-style:groove;
-  border-radius: 5px;
+	width: calc((5vh + 5vw) / 2);
+	height: calc((5vh + 5vw) / 2);
+	border: rgb(0, 255, 179);
+	border-style:groove;
+	border-radius: 5px;
 }
 
 @media (orientation: landscape){
-  .content_box{
-    width: 95vw;
-  }
-}
-@media (orientation: portrait){
-
+	.content_box{
+		width: 95vw;
+	}
 }

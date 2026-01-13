@@ -35,6 +35,8 @@ export default function Register() {
 	const [touchedPassword, setTouchedPassword] = useState<boolean>(false);
 	const [touchedPasswordConfirm, setTouchedPasswordConfirm] = useState<boolean>(false);
 
+	const [disableFlag, setDisableFlag]= useState<boolean>(false)
+
 	const validateName = (v: string) => v.trim().length >= 4;
 	const validateLogin = (v: string) => v.trim().length >= 4;
 
@@ -94,6 +96,8 @@ export default function Register() {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+
+		setDisableFlag(true);
 
 		setTouchedName(true);
 		setTouchedLogin(true);
@@ -197,6 +201,7 @@ export default function Register() {
 						flag_error={flag_login_error}
 						onBlur={handleLoginBlur}
 						touched={touchedLogin}
+						disableFlag={disableFlag}
 						errorMessage="Логин должен содержать не менее 4 символов"
 						>Логин</Input>
 
@@ -207,6 +212,7 @@ export default function Register() {
 						flag_error={flag_name_error}
 						onBlur={handleNameBlur}
 						touched={touchedName}
+						disableFlag={disableFlag}
 						errorMessage="Имя должно содержать не менее 4 символов"
 						>Никнейм</Input>
 
@@ -217,6 +223,7 @@ export default function Register() {
 						flag_error={flag_email_error}
 						onBlur={handleEmailBlur}
 						touched={touchedEmail}
+						disableFlag={disableFlag}
 						errorMessage="Введите корректный email адрес"
 						>Почта</Input>
 
@@ -227,6 +234,7 @@ export default function Register() {
 						flag_error={flag_password_error}
 						onBlur={handlePasswordBlur}
 						touched={touchedPassword}
+						disableFlag={disableFlag}
 						errorMessage="Пароль должен содержать не менее 6 символов"
 						>Пароль</Input>
 
@@ -237,8 +245,10 @@ export default function Register() {
 						flag_error={flag_password_confirm_error}
 						onBlur={handlePasswordConfirmBlur}
 						touched={touchedPasswordConfirm}
+						disableFlag={disableFlag}
 						errorMessage="Пароли не совпадают"
 						>Подтвердите пароль</Input>
+
 						<Button type={"submit"} flag_disabled={flag_email_error || flag_name_error || flag_password_confirm_error || flag_password_error || (email.length==0) || (name.length==0)||(password.length==0) || (password_confirm.length==0)}>
 							Подтвердить
 						</Button>

@@ -24,6 +24,8 @@ export default function Login() {
 	const validateName = (v: string) => v.trim().length >= 3; // минимум 3 символов
 	const validatePassword = (v: string) => v.length >= 6; // минимум 6 символов
 
+	const [disableFlag, setDisableFlag]= useState<boolean>(false)
+
 	function handleNameChange(v: string) {
 		setName(v);
 		if (touchedName) setFlag_name_error(!validateName(v));
@@ -62,12 +64,14 @@ export default function Login() {
 		setFlag_name_error(nameInvalid);
 		setFlag_password_error(passwordInvalid);
 
+		setDisableFlag(true);
+
 		if (nameInvalid || passwordInvalid) {
-		console.log("Validation failed, not sending. Flags:", {
-			nameInvalid,
-			passwordInvalid,
-		});
-		return;
+			console.log("Validation failed, not sending. Flags:", {
+				nameInvalid,
+				passwordInvalid,
+			});
+			return;
 		}
 
 		const params = new URLSearchParams();
@@ -75,18 +79,18 @@ export default function Login() {
 		params.append("password", password);
 		params.append("grant_type", "password");
 		try {
-		const response = await api.post(
-			"/auth/token/",
-			params.toString(),
-			{
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-			},
-			}
-		);
-		const newAccess = response.data?.access_token;
-		if (newAccess) setAccessToken(newAccess);
-		setSendStatus('success');
+			const response = await api.post(
+				"/auth/token/",
+				params.toString(),
+				{
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				}
+			);
+			const newAccess = response.data?.access_token;
+			if (newAccess) setAccessToken(newAccess);
+			setSendStatus('success');
 
 		}catch (error: unknown) {
             setSendStatus('error');
@@ -148,6 +152,7 @@ export default function Login() {
 					flag_error={flag_name_error}
 					onBlur={handleNameBlur}
 					touched={touchedName}
+					disableFlag={disableFlag}
 					errorMessage="Имя должно содержать не менее 3 символов"
 					>Логин</Input>
 
@@ -158,6 +163,7 @@ export default function Login() {
 					flag_error={flag_password_error}
 					onBlur={handlePasswordBlur}
 					touched={touchedPassword}
+					disableFlag={disableFlag}
 					errorMessage="Пароль должен содержать не менее 6 символов"
 					>Пароль</Input>
 

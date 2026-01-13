@@ -23,6 +23,8 @@ export default function Profile (){
     const [serverMessage, setServerMessage] = useState<string>('');
     const [messages, setMessages] = useState<Array<{title:string, body:string, name_img:string, username:string, id:number}>>([]);
     const [expandedPosts, setExpandedPosts] = useState<Set<number>>(new Set());
+    const [disableFlag, setDisableFlag]= useState<boolean>(false)
+
     function ButtonProfile(){
         setFormFlag(!formFlag)
     }
@@ -94,11 +96,12 @@ export default function Profile (){
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-            try {
+        setDisableFlag(true);
+        try {
             await api.put(
-            "/user/",
-            { username: username},
-            { headers: { "Content-Type": "application/json" } }
+                "/user/",
+                { username: username},
+                { headers: { "Content-Type": "application/json" } }
             );
             setSendStatus('success');
         }catch (error: unknown) {
@@ -157,6 +160,7 @@ export default function Profile (){
                                 <form onSubmit={handleSubmit} noValidate className='form_profile'>
                                     <input type="text"
                                         style={{maxWidth:"100%"}}
+                                        disabled={disableFlag}
                                         onChange={handleChange}
                                         onBlur={handleBlur} 
                                         value={username}
