@@ -62,10 +62,10 @@ Frontend реализует клиентскую маршрутизацию (SPA
 * пользовательские профили;
 * просмотр и работа с постами.
 
-Все HTTP-запросы из браузера направляются:
+Все внешние HTTPS-запросы из браузера направляются:
 
 ```
-Browser → Nginx → Gateway → Backend services
+Browser (HTTPS) → Nginx (TLS termination) → Gateway → Backend services
 ```
 
 ---
