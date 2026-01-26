@@ -1,10 +1,19 @@
 import Particles from "@tsparticles/react";
 
+import { useCallback } from "react";
+import { loadSlim } from "@tsparticles/slim";   // или loadFull из @tsparticles/all
+
+
 export default function ParticlesBackground() {
+    const particlesInit = useCallback(async (engine) => {
+        await loadSlim(engine);
+        // console.log("Particles initialized inside component");
+    }, []);
 
     return (
         <Particles
         id="firefly"
+        init={particlesInit}
         options={{
             fpsLimit: 60,
             fullScreen: { enable: true, zIndex: -1 },
