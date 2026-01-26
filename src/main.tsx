@@ -8,10 +8,13 @@ import Confirm from './pages/Confirm.tsx'
 import Profile from './pages/Profile.tsx'
 import Post from './pages/Post.tsx'
 import Logout from './pages/Logout.tsx'
+import { initParticles } from './parcticles_init.tsx'
 
 import Parcticles from './components/parcticls.tsx'
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
+
+initParticles();
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
