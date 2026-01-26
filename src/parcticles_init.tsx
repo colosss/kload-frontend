@@ -1,5 +1,6 @@
 import { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+// import { loadSlim } from "@tsparticles/slim";
+import { loadFull } from "tsparticles";
 
 let isInitialized = false;
 
@@ -9,7 +10,8 @@ export async function initParticles() {
 
     try {
         await initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
+        // await loadSlim(engine);
+        await loadFull(engine);
         console.log("tsParticles engine initialized");
         });
     } catch (err) {
